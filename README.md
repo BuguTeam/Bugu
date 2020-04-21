@@ -31,11 +31,9 @@
 
 在包含上述两个文件夹的目录下：
 
-Create a project folder and a `venv` folder within:
+Create a `venv` folder:
 
 ```
-$ mkdir myproject
-$ cd myproject
 $ python3 -m venv venv
 ```
 
