@@ -1,9 +1,9 @@
 ## flask后端
-
-
-
-## ~~虚弱的~~1.0
-
+</br>
+</br>
+</br>
+### ~~虚弱的~~1.0
+</br>
 ### Layout
 
 ---
@@ -23,9 +23,9 @@
 └── instance/
     └── demo_flask.sqlite
 ```
-
-
-
+</br>
+</br>
+</br>
 ### Installation（和flask官方文档中内容一样）
 
 ---
@@ -65,9 +65,9 @@ Within the activated environment, use the following command to install Flask:
 ```
 $ pip install Flask
 ```
-
-
-
+</br>
+</br>
+</br>
 ### Setup
 
 ---
@@ -115,9 +115,9 @@ You’ll see output similar to this:
 ```
 
 Visit <http://127.0.0.1:5000/addActivity> or <http://127.0.0.1:5000/getActivityList> in a browser.
-
-
-
+</br>
+</br>
+</br>
 ### 目前实现的功能概述
 
 ---
@@ -151,9 +151,9 @@ demo_flask/templates/以及demo_flask/static/下都是借鉴flask tutorial里的
    ```limit```表示希望返回的活动个数，整数即可。
 
    点击“Get”后会返回活动列表，按照活动创建时间（或者之后可以改成按照另外两个时间）从新到旧排序。
-
-
-
+</br>
+</br>
+</br>
 ### 与前端的交互
 
 ---
@@ -226,9 +226,9 @@ demo_flask/templates/以及demo_flask/static/下都是借鉴flask tutorial里的
    location['locationType'] = str(row[11])
    result['location'] = location
    ```
-
-
-
+</br>
+</br>
+</br>
 ### 数据库
 
 ---
@@ -266,9 +266,9 @@ demo_flask/templates/以及demo_flask/static/下都是借鉴flask tutorial里的
 2. 数据库操作（见```demo_flask/db.py```）
 
    这个文件和flask文档tutorial中的是一样的，其中定义了一个新的命令行操作```init-db```，在上面Setup中执行，可以初始化数据库。
-
-
-
+</br>
+</br>
+</br>
 ### Problems To Be Fixed...
 
 ---
