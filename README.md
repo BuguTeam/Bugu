@@ -1,10 +1,10 @@
-### flask后端
+## flask后端
 
 
 
-#### ~~虚弱的~~1.0
+## ~~虚弱的~~1.0
 
-##### Layout
+### Layout
 
 ---
 
@@ -26,7 +26,7 @@
 
 
 
-##### Installation（和flask官方文档中内容一样）
+### Installation（和flask官方文档中内容一样）
 
 ---
 
@@ -68,7 +68,7 @@ $ pip install Flask
 
 
 
-##### Setup
+### Setup
 
 ---
 
@@ -118,7 +118,7 @@ Visit <http://127.0.0.1:5000/addActivity> or <http://127.0.0.1:5000/getActivityL
 
 
 
-##### 目前实现的功能概述
+### 目前实现的功能概述
 
 ---
 
@@ -126,7 +126,7 @@ demo_flask/templates/以及demo_flask/static/下都是借鉴flask tutorial里的
 
 按照上面的步骤查看 <http://127.0.0.1:5000/addActivity> or <http://127.0.0.1:5000/getActivityList> ，可以简单地测试一下增加活动与查看活动的功能。
 
-![test](D:\SWE_Course_Project\test.bmp)
+![test](test.bmp)
 
 1. addActivity
 
@@ -154,7 +154,7 @@ demo_flask/templates/以及demo_flask/static/下都是借鉴flask tutorial里的
 
 
 
-##### 与前端的交互
+### 与前端的交互
 
 ---
 
@@ -229,7 +229,7 @@ demo_flask/templates/以及demo_flask/static/下都是借鉴flask tutorial里的
 
 
 
-##### 数据库
+### 数据库
 
 ---
 
@@ -269,7 +269,7 @@ demo_flask/templates/以及demo_flask/static/下都是借鉴flask tutorial里的
 
 
 
-##### Problems To Be Fixed...
+### Problems To Be Fixed...
 
 ---
 
