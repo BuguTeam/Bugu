@@ -14,10 +14,11 @@
       并且把活動的id作爲參數傳給它 -->
       <!-- 
       可以选择显示形式为'2020-04-01 00:02:00'的时间:
-        <view class="card-time" > {{item.startTime}}</view>
+      <view class="card-time" > {{item.startTime}}</view>
+      
       也可以显示星期几：
       -->
-      <view class="card-time" > {{item.day}}</view>
+      <view class="card-time" > {{item.day}} </view>
       
       <view class="padding-sm">
           <view class="flex  p-xs margin-bottom-sm mb-sm">

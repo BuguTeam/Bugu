@@ -31,7 +31,7 @@ Page({
     },
     {
         id:1, 
-        name:'借电脑充电器', 
+        name:'借充电器', 
         startTime: '2020-04-02 00:01:00', 
         registrationDDL: '2020-04-01 00:01:00',
         maxParticipantNumber:6,
@@ -95,7 +95,7 @@ Page({
     },
     {
         id:5, 
-        name:'借电脑充电器', 
+        name:'借充电器', 
         startTime: '2020-04-06 00:00:00', 
         registrationDDL: '2020-04-01 00:00:00',
         maxParticipantNumber:6,
@@ -154,16 +154,21 @@ Page({
   },
   
   getWeekday: function() {
-      var i = 0;
-      var len = this.data.activitylist.length;
-      var weekdays = this.data.weekdays;
+      let self=this,
+          activitylist = this.data.activitylist,
+          i = 0,
+          len = this.data.activitylist.length,
+          weekdays = this.data.weekdays;
       for (; i < len; i++)
       {
-          var item = this.data.activitylist[i];
-          this.data.activitylist[i].day = 
+          var item = activitylist[i];
+          activitylist[i].day = 
             weekdays[new Date(item.startTime).getDay()];
           //console.log(this.data.activitylist[i])
       }
+      self.setData({
+        activitylist: activitylist
+    })
   },
   /**
    * 生命周期函数--监听页面加载
@@ -187,9 +192,10 @@ Page({
             self.setData({
                 activitylist: res.data
             })
-            console.log(self.data.activitylist)
+            
             self.generateRandomBgColor()
             self.getWeekday()
+            console.log(self.data.activitylist)
         }
     })
     
@@ -264,9 +270,9 @@ Page({
       this.setData({
           activitylist: list
       })
-      console.log(this.data.activitylist)
       this.getWeekday()
       this.generateRandomBgColor()
+      console.log(this.data.activitylist)
   },
 
   /**
