@@ -169,9 +169,33 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // TODO: 获取最新发布的活动列表
-    this.generateRandomBgColor()
-    this.getWeekday()
+    // 获取最新发布的活动列表
+    var self = this;
+    wx.request({
+        url: "http://127.0.0.1:5000/getActivityList",
+        data: {
+          limit: JSON.stringify(4)
+        },
+        method: "POST",
+        header: {
+          'content-type': 'application/x-www-form-urlencoded',
+          'chartset': 'utf-8'
+        },
+        
+        success:function(res){
+            console.log(res.data)
+            self.setData({
+                activitylist: res.data
+            })
+            console.log(self.data.activitylist)
+            self.generateRandomBgColor()
+            self.getWeekday()
+        }
+    })
+    
+    //console.log(this.data.activitylist)
+    //this.generateRandomBgColor()
+    //this.getWeekday()
   },
 
   /**
