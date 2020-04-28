@@ -72,9 +72,9 @@ show-location style="width: 100%; height:490rpx;"></map>
     <input placeholder="最大参与人数" bindinput="maxParticipantNumberInput"></input>
   </view>
 </view>
-  <view class="cu-form-group align-start radius discription_container">
-      <view class="title discription">描述</view>
-      <textarea maxlength="1000" disabled="{{modalName!=null}}" bindinput="discriptionInput"></textarea>
+  <view class="cu-form-group align-start radius description_container">
+      <view class="title description">描述</view>
+      <textarea maxlength="1000" disabled="{{modalName!=null}}" bindinput="descriptionInput"></textarea>
   </view>
 </view>
 <view class="solid-bottom colomn">

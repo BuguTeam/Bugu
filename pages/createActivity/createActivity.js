@@ -11,7 +11,7 @@ Page({
     endDate: '2030-05-01',
     maxParticipantNumber: undefined,
     name: "",
-    discription:"",
+    description:"",
     longitude: undefined,
     latitude: undefined,
     location:undefined,
@@ -23,7 +23,7 @@ Page({
 
   maxParticipantNumberInput: function (e) {
     this.setData({
-      maxParticipantNumberInput: e.detail.value
+      maxParticipantNumber: e.detail.value
     })
   },
 
@@ -33,9 +33,9 @@ Page({
     })
   },
 
-  discriptionInput: function (e) {
+  descriptionInput: function (e) {
     this.setData({
-      discription: e.detail.value
+      description: e.detail.value
     })
   },
 
