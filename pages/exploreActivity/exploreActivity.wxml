@@ -1,0 +1,53 @@
+<!--pages/exploreActivity/exploreActivity.wxml-->
+
+<scroll-view scroll-y 
+    bindscrolltolower="bottomHandler" scrolltoupper="upperHandler" class="scrollPage">
+
+
+  <image src='./images/wave.gif' mode='widthFix' class='gif' style='width:100%;height:486rpx'></image>
+  
+  <view class='card-list'>
+    <navigator open-type="navigate" hover-class='none' url="/pages/createActivity/createActivity?id={{item.id}}" class="card-li bg-{{randomColorArr[key]}}" wx:for="{{activitylist}}" wx:key="key" wx:for-index="key">
+      <!-- 
+      TODO：上面的跳轉url现在是跳转到了添加活动的页面，
+      以後應該改成展示一個活動的頁面（目前還沒有寫），
+      并且把活動的id作爲參數傳給它 -->
+      <!-- 
+      可以选择显示形式为'2020-04-01 00:02:00'的时间:
+      <view class="card-time" > {{item.startTime}}</view>
+      
+      也可以显示星期几：
+      -->
+      <view class="card-time" > {{item.day}} </view>
+      
+      <view class="padding-sm">
+          <view class="flex  p-xs margin-bottom-sm mb-sm">
+            <view class="flex-sub padding-sm margin-xs radius">
+              <view class="card-title">{{item.name}}</view>
+              
+            </view>
+            <view class="flex-twice padding-sm margin-xs radius">          
+              
+              
+              <view class="card-location"><text class='cuIcon-location'></text>  {{item.location.name}}</view>
+              <!--
+              <view class="card-text"> {{item.description}}</view>
+              -->
+              < text wx:key="{{this}}" wx:for="{{item.currentParticipantNumber}}">
+                <text class='cuIcon-peoplefill'></text>
+              </text>
+              < text wx:key="{{this}}" wx:for="{{item.maxParticipantNumber-item.currentParticipantNumber}}">
+                <text class='cuIcon-people'></text>
+              </text>
+              
+            </view>
+          </view>
+      </view>
+      
+
+    </navigator>
+  </view>
+  
+
+  <view class='cu-tabbar-height'></view>
+</scroll-view>

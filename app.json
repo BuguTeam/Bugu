@@ -1,12 +1,13 @@
 {
   "pages": [
+    "pages/exploreActivity/exploreActivity",
     "pages/createActivity/createActivity",
     "pages/index/index",
     "pages/logs/logs"
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarTitleText": "WeChat",
+    "navigationBarTitleText": "Bugu",
     "navigationBarTextStyle": "white"
   },
   "permission": {

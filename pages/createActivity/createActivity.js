@@ -11,7 +11,7 @@ Page({
     endDate: '2030-05-01',
     maxParticipantNumber: undefined,
     name: "",
-    discription:"",
+    description:"",
     longitude: undefined,
     latitude: undefined,
     location:undefined,
@@ -23,7 +23,7 @@ Page({
 
   maxParticipantNumberInput: function (e) {
     this.setData({
-      maxParticipantNumberInput: e.detail.value
+      maxParticipantNumber: e.detail.value
     })
   },
 
@@ -33,9 +33,9 @@ Page({
     })
   },
 
-  discriptionInput: function (e) {
+  descriptionInput: function (e) {
     this.setData({
-      discription: e.detail.value
+      description: e.detail.value
     })
   },
 
@@ -124,7 +124,42 @@ Page({
         type:"wgs84"
       }
     }
+
     console.log(res)
+
+    wx.request({
+      url: "http://127.0.0.1:5000/addActivity",
+      data: {
+        name:JSON.stringify(this.data.name),
+        startTime:JSON.stringify(this.data.startDate+" "+this.data.startTime),
+        registrationDDL:JSON.stringify(this.data.endDate+" "+this.data.endTime),
+        description:JSON.stringify(this.data.description),
+        maxParticipantNumber: JSON.stringify(this.data.maxParticipantNumber),
+        location:JSON.stringify({
+          name:JSON.stringify(this.data.location),
+          longitude:JSON.stringify(this.data.longitude),
+          latitude:JSON.stringify(this.data.latitude),
+          type:JSON.stringify("wgs84")
+        })
+      },
+      method: "POST",
+      header: {
+        'content-type': 'application/x-www-form-urlencoded',
+        'chartset': 'utf-8'
+      },
+      success:function(res){
+        console.log(res);
+        wx.showToast({
+          title: res.data,
+          icon: 'none',
+          duration: 2000
+        });
+        //wx.redirectTo({
+        //  url: "/pages/exploreActivity/exploreActivity"
+        //})
+      }
+    })
+    
   },
   /**
    * 生命周期函数--监听页面加载
