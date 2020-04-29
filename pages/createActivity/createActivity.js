@@ -86,7 +86,7 @@ Page({
   },
 
   locationPicker:function(e){
-    let name=this.data.location[e.detail.value]
+    let name=this.data.locationList[e.detail.value]
     let loc = this.data.locationLatLng[e.detail.value]
     this.setData({
       location:name,
