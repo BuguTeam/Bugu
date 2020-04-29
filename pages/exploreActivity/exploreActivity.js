@@ -189,9 +189,10 @@ Page({
         
         success:function(res){
             console.log(res.data)
-            self.setData({
-                activitylist: res.data
-            })
+            if(res.data.length != 0)
+                self.setData({
+                    activitylist: res.data
+                })
             
             self.generateRandomBgColor()
             self.getWeekday()
