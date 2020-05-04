@@ -178,7 +178,7 @@ Page({
         url: 'http://127.0.0.1:5000/user/getActivityList',
         data: {
             third_session: third_session,
-            limit: JSON.stringify(limit_per_request)
+            limit: JSON.stringify(this.data.limit_per_request)
         },
         method: 'POST',
         header: {
