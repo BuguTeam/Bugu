@@ -177,9 +177,9 @@ Page({
     // 获取最新发布的活动列表
     var self = this;
     wx.request({
-        url: "http://127.0.0.1:5000/getActivityList",
+        url: "http://127.0.0.1:5000/user/getActivityList",
         data: {
-          limit: JSON.stringify(4)
+            limit: JSON.stringify(4)
         },
         method: "POST",
         header: {
