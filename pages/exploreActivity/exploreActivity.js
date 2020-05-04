@@ -125,7 +125,7 @@ Page({
         password: undefined
     }],
     
-    number_per_page: 4,
+    limit_per_request: 4,
     
     tagBackgroundColor:"#39C5BB"
   },
@@ -170,11 +170,7 @@ Page({
         activitylist: activitylist
     })
   },
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-    // 获取最新发布的活动列表
+  getActivityList: function() {
     var self = this;
     var third_session = wx.getStorageSync('third_session');
     console.log('get third_session: ', third_session)
@@ -182,7 +178,7 @@ Page({
         url: 'http://127.0.0.1:5000/user/getActivityList',
         data: {
             third_session: third_session,
-            limit: JSON.stringify(4)
+            limit: JSON.stringify(limit_per_request)
         },
         method: 'POST',
         header: {
@@ -205,10 +201,14 @@ Page({
             console.log('登陆失败！' + res.errMsg)
         }
     })
+  },
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    // 获取最新发布的活动列表
+    this.getActivityList()
     
-    //console.log(this.data.activitylist)
-    //this.generateRandomBgColor()
-    //this.getWeekday()
   },
 
   /**
@@ -222,7 +222,8 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+      console.log('onShow:')
+      this.getActivityList()
   },
 
   /**

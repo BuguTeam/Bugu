@@ -136,7 +136,7 @@ Page({
         description:JSON.stringify(this.data.description),
         maxParticipantNumber: JSON.stringify(this.data.maxParticipantNumber),
         location:JSON.stringify({
-          name:JSON.stringify(this.data.location),
+          wname:JSON.stringify(this.data.location),
           longitude:JSON.stringify(this.data.longitude),
           latitude:JSON.stringify(this.data.latitude),
           type:JSON.stringify("wgs84")
