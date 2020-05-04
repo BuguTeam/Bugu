@@ -176,20 +176,23 @@ Page({
   onLoad: function (options) {
     // 获取最新发布的活动列表
     var self = this;
+    var third_session = wx.getStorageSync('third_session');
+    console.log('get third_session: ', third_session)
     wx.request({
-        url: "http://127.0.0.1:5000/getActivityList",
+        url: 'http://127.0.0.1:5000/user/getActivityList',
         data: {
-          limit: JSON.stringify(4)
+            third_session: third_session,
+            limit: JSON.stringify(4)
         },
-        method: "POST",
+        method: 'POST',
         header: {
           'content-type': 'application/x-www-form-urlencoded',
           'chartset': 'utf-8'
         },
         
         success:function(res){
-            console.log(res.data)
-            if(res.data.length != 0)
+            console.log('request getActList returns: ', res.data)
+            if (res.data.length != 0)
                 self.setData({
                     activitylist: res.data
                 })
@@ -197,6 +200,9 @@ Page({
             self.generateRandomBgColor()
             self.getWeekday()
             console.log(self.data.activitylist)
+        },
+        fail: function(res) {
+            console.log('登陆失败！' + res.errMsg)
         }
     })
     

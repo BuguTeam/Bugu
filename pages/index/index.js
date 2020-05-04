@@ -7,7 +7,8 @@ Page({
     motto: 'Hello World',
     userInfo: {},
     hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    PageCur: 'addActivity'
   },
   //事件处理函数
   bindViewTap: function() {
@@ -15,6 +16,14 @@ Page({
       url: '../logs/logs'
     })
   },
+  
+  NavChange(e) {
+    this.setData({
+      PageCur: e.currentTarget.dataset.cur
+    })
+  },
+  
+  
   onLoad: function () {
     if (app.globalData.userInfo) {
       this.setData({

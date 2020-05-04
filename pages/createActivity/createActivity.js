@@ -128,7 +128,7 @@ Page({
     console.log(res)
 
     wx.request({
-      url: "http://127.0.0.1:5000/addActivity",
+      url: "http://127.0.0.1:5000/user/addActivity",
       data: {
         name:JSON.stringify(this.data.name),
         startTime:JSON.stringify(this.data.startDate+" "+this.data.startTime),

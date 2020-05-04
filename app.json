@@ -1,8 +1,8 @@
 {
   "pages": [
+    "pages/index/index",
     "pages/exploreActivity/exploreActivity",
     "pages/createActivity/createActivity",
-    "pages/index/index",
     "pages/logs/logs"
   ],
   "window": {
@@ -10,6 +10,32 @@
     "navigationBarTitleText": "Bugu",
     "navigationBarTextStyle": "white"
   },
+  "tabBar": {
+    "color": "#707070",
+    "selectedColor": "#2DBB55",
+    "backgroundColor": "#FAFAFA",
+    "list": [
+      {
+        "selectedIconPath": "images/tabbar/basics_cur.png",
+        "iconPath": "images/tabbar/basics.png",
+        "pagePath": "pages/createActivity/createActivity",
+        "text": "发起活动"
+      },
+      {
+        "selectedIconPath": "images/tabbar/discover_cur.png",
+        "iconPath": "images/tabbar/discover.png",
+        "pagePath": "pages/exploreActivity/exploreActivity",
+        "text": "发现"
+      },
+      {
+        "selectedIconPath": "images/tabbar/about_cur.png",
+        "iconPath": "images/tabbar/about.png",
+        "pagePath": "pages/index/index",
+        "text": "我的"
+      }
+    ]
+  },
+  
   "permission": {
     "scope.userLocation": {
       "desc": "你的位置信息将用于发起活动时获取位置" 
@@ -17,4 +43,5 @@
   },
   "style": "v2",
   "sitemapLocation": "sitemap.json"
+  
 }
