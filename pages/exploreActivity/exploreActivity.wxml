@@ -1,5 +1,4 @@
 <!--pages/exploreActivity/exploreActivity.wxml-->
-
 <scroll-view scroll-y 
     bindscrolltolower="bottomHandler" scrolltoupper="upperHandler" class="scrollPage">
 
@@ -12,13 +11,8 @@
       TODO：上面的跳轉url现在是跳转到了添加活动的页面，
       以後應該改成展示一個活動的頁面（目前還沒有寫），
       并且把活動的id作爲參數傳給它 -->
-      <!-- 
-      可以选择显示形式为'2020-04-01 00:02:00'的时间:
-      <view class="card-time" > {{item.startTime}}</view>
       
-      也可以显示星期几：
-      -->
-      <view class="card-time" > {{item.day}} </view>
+      <view class="card-time" > {{item.day}}</view>
       
       <view class="padding-sm">
           <view class="flex  p-xs margin-bottom-sm mb-sm">
@@ -48,6 +42,9 @@
     </navigator>
   </view>
   
-
   <view class='cu-tabbar-height'></view>
+  
 </scroll-view>
+<movableView bind:pagerefresh="onRefreshClick"></movableView>s
+
+

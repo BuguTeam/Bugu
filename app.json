@@ -35,7 +35,9 @@
       }
     ]
   },
-  
+  "usingComponents": {
+    "movableView": "./component/movableView/movableView"
+  },
   "permission": {
     "scope.userLocation": {
       "desc": "你的位置信息将用于发起活动时获取位置" 

@@ -1,0 +1,7 @@
+<movable-area class="movable-area">
+  <movable-view class="movable-view" direction="all">
+      <view class="icon_bn" bindtap="refresh">
+        <text class="cuIcon-pullup text-green"></text> 
+      </view>
+  </movable-view>
+</movable-area>

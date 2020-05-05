@@ -12,6 +12,7 @@ Page({
      */
     randomColorArr: [], 
     weekdays: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+    Monate: ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'],
         
     activitylist: [
     {
@@ -125,8 +126,8 @@ Page({
         password: undefined
     }],
     
-    limit_per_request: 4,
-    
+    limit_per_request: 3,
+    lastActivityTime: '', 
     tagBackgroundColor:"#39C5BB"
   },
 
@@ -155,30 +156,38 @@ Page({
   
   getWeekday: function() {
       let self=this,
-          activitylist = this.data.activitylist,
+          activitylist = self.data.activitylist,
           i = 0,
-          len = this.data.activitylist.length,
-          weekdays = this.data.weekdays;
+          len = self.data.activitylist.length,
+          weekdays = self.data.weekdays,
+          Monate = self.data.Monate;
       for (; i < len; i++)
       {
-          var item = activitylist[i];
+          let item = activitylist[i], 
+              date = new Date(item.startTime * 1000);
           activitylist[i].day = 
-            weekdays[new Date(item.startTime).getDay()];
-          //console.log(this.data.activitylist[i])
+            (Monate[date.getMonth()]) + ' ' + date.getDate() + ' ' + (weekdays[date.getDay()]);
       }
       self.setData({
         activitylist: activitylist
     })
   },
   getActivityList: function() {
-    var self = this;
-    var third_session = wx.getStorageSync('third_session');
+    let self = this,
+        third_session = wx.getStorageSync('third_session');
     console.log('get third_session: ', third_session)
+    let send = {
+            third_session: third_session,
+            limit: JSON.stringify(self.data.limit_per_request),
+            lastActivityTime: JSON.stringify(self.data.lastActivityTime),
+        }
+    console.log('sends ', send)
     wx.request({
         url: 'http://127.0.0.1:5000/user/getActivityList',
         data: {
             third_session: third_session,
-            limit: JSON.stringify(this.data.limit_per_request)
+            limit: JSON.stringify(self.data.limit_per_request),
+            lastActivityTime: JSON.stringify(self.data.lastActivityTime),
         },
         method: 'POST',
         header: {
@@ -188,10 +197,20 @@ Page({
         
         success:function(res){
             console.log('request getActList returns: ', res.data)
-            if (res.data.length != 0)
-                self.setData({
-                    activitylist: res.data
-                })
+            console.log('request getActList returns: ', res.data.alist)
+            let list = self.data.newlist
+            if (typeof self.data.activitylist !== "undefined")
+                list = self.data.activitylist
+            console.log('current list: ', list)
+       
+            if (typeof res.data.alist !== "undefined")
+                list = list.concat(res.data.alist)
+            else
+                list = list.concat(self.data.newlist)
+            self.setData({
+                activitylist: list,
+                lastActivityTime: res.data.lastActivityTime
+            })
             
             self.generateRandomBgColor()
             self.getWeekday()
@@ -206,8 +225,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+      console.log('onLoad:')
+      var self = this;
+      self.setData({
+          activitylist: [],
+          lastActivityTime: '',
+      })
     // 获取最新发布的活动列表
-    this.getActivityList()
+    self.getActivityList()
     
   },
 
@@ -223,7 +248,14 @@ Page({
    */
   onShow: function () {
       console.log('onShow:')
-      this.getActivityList()
+      /*
+      var self = this;
+      self.setData({
+          activitylist: [],
+          lastActivityTime: '',
+      })
+      self.getActivityList()
+      */
   },
 
   /**
@@ -249,10 +281,10 @@ Page({
   upperHandler: function() {
       console.log('upperHandler')
     // TODO: 获取最新发布的活动列表
-      this.setData({
-          activitylist: this.data.newlist
+    
+      self.setData({
+          activitylist: self.data.newlist
       })
-    this.generateRandomBgColor()
       
   },
 
@@ -271,16 +303,9 @@ Page({
    */
   bottomHandler: function () {
       console.log('bottomHandler')
-      
-      var list = this.data.activitylist;
-      // TODO 将newlist换成下一页的数据
-      list = list.concat(this.data.newlist)
-      this.setData({
-          activitylist: list
-      })
-      this.getWeekday()
-      this.generateRandomBgColor()
-      console.log(this.data.activitylist)
+      let self=this;
+      self.getActivityList()
+      console.log(self.data.activitylist)
   },
 
   /**
@@ -288,5 +313,16 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  onRefreshClick: function() {
+      console.log('onRefreshClick:')
+      var self = this;
+      self.setData({
+          activitylist: [],
+          lastActivityTime: '',
+      })
+    // 获取最新发布的活动列表
+    self.getActivityList()
+      
   }
 })

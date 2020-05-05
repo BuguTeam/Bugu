@@ -14,7 +14,7 @@ Page({
     description:"",
     longitude: undefined,
     latitude: undefined,
-    location:undefined,
+    location: undefined,
     phoneLoc:undefined,
     locationList:[],
     locationLatLng:[],
@@ -110,8 +110,10 @@ Page({
         duration: 2000
       }) 
     }
+    var third_session = wx.getStorageSync('third_session');
 
     let res={
+      third_session: third_session,
       name:this.data.name,
       startTime:this.data.startDate+" "+this.data.startTime,
       registrationDDL:this.data.endDate+" "+this.data.endTime,
@@ -126,10 +128,12 @@ Page({
     }
 
     console.log(res)
-
+    
     wx.request({
       url: "http://127.0.0.1:5000/user/addActivity",
       data: {
+        third_session: third_session,
+            
         name:JSON.stringify(this.data.name),
         startTime:JSON.stringify(this.data.startDate+" "+this.data.startTime),
         registrationDDL:JSON.stringify(this.data.endDate+" "+this.data.endTime),

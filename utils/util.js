@@ -31,6 +31,7 @@ function userLogin () {
 }
 
 function onLogin() {
+  console.log('Executing util.onLogin')
   wx.login({
       success: function (res) {
           if (res.code) {
@@ -53,7 +54,7 @@ function onLogin() {
                           key: 'third_session',
                           data: res.data.third_session
                       })
-                      //this.getUserInfo()
+                      getUserInfo()
                   },
                   fail: function (res) {
                       console.log('登陆失败！' + res.errMsg)
@@ -66,11 +67,39 @@ function onLogin() {
   })
 }
 function getUserInfo () {
-  wx.getUserInfo({
+    console.log('Executing util.getUserInfo')
+    wx.getUserInfo({
       success: function (res) {
-          var userInfo = res.UserInfo
+          var userInfo = res.userInfo
           userInfoSetInSQL(userInfo)
+      },
+      fail: function() {
+          //userAccess()
       }
-  })
+    })
+}
+function userInfoSetInSQL(userInfo) {
+    console.log('Executing util.userInfoSetInSQL')
+    var third_session = wx.getStorageSync('third_session');
+    console.log('3rd_session: ', third_session)
+    wx.request({
+        url: 'http://127.0.0.1:5000/register',
+        method: 'post',
+        data: {
+            third_session: third_session,
+            nickname: userInfo.nickName,
+            avatar_url: userInfo.avatarUrl,
+            gender: userInfo.gender,
+            province: userInfo.province,
+            city: userInfo.city,
+            country: userInfo.country
+        },
+        success: function (res) {
+            console.log('SQL更新用户数据成功！')
+        },
+        fail: function (res) {
+            console.log('SQL更新用户数据失败！' + res.errMsg)
+        }
+    })
 }
 module.exports.onLogin = onLogin; //暴露接口
