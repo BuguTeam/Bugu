@@ -1,7 +1,8 @@
 {
   "pages": [
-    "pages/exploreActivity/exploreActivity",
+    "pages/activityInfo/activityInfo",
     "pages/createActivity/createActivity",
+    "pages/exploreActivity/exploreActivity",
     "pages/index/index",
     "pages/logs/logs"
   ],
@@ -12,7 +13,7 @@
   },
   "permission": {
     "scope.userLocation": {
-      "desc": "你的位置信息将用于发起活动时获取位置" 
+      "desc": "你的位置信息将用于发起活动时获取位置"
     }
   },
   "style": "v2",
