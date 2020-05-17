@@ -21,7 +21,7 @@ show-location style="width: 100%; height:490rpx;"></map>
   <view class="row">
     <view class="cu-tag radius tag_look" bindtap="tapOnLocationTag" style="background-color:{{tagBackgroundColor}};color:white">位置</view>
     <view class="cu-form-group radius input_look">
-      <view><input placeholder="{{location}}" bindchange="locationInput"></input></view>
+      <view><input value="{{location}}" bindchange="locationInput"></input></view>
       <view class="searchSize"><picker range="{{locationList}}" class="cuIcon-locationfill text-orange" showvalue="title" bindchange="locationPicker">搜索</picker></view>
     </view>
   </view>

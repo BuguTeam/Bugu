@@ -5,16 +5,16 @@ Page({
    * 页面的初始数据
    */
   data: {
-    startTime: '12:01',
-    startDate: '2020-05-01',
-    endTime: '12:01',
-    endDate: '2030-05-01',
+    startTime:'请选择时间',
+    startDate: '活动开始日期',
+    endTime: '请选择时间',
+    endDate: '报名截止日期',
     maxParticipantNumber: undefined,
     name: "",
     description:"",
     longitude: undefined,
     latitude: undefined,
-    location: undefined,
+    location: "",
     phoneLoc:undefined,
     locationList:[],
     locationLatLng:[],
