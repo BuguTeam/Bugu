@@ -18,6 +18,10 @@ Page({
     buttonMessage:"点击参与活动",
     discussionTag:"讨论版"
   },
+  buildTime: function (time) {
+    var date = new Date(time + 8 * 3600 * 1000); // 增加8小时
+    return date.toJSON().substr(0, 19).replace('T', ' ');
+  },
   onLoad(e) {
     let response = JSON.parse(e.query);
     console.log(response)
@@ -44,8 +48,10 @@ Page({
     let that = this;
     that.setData({
       activityName:response.name,
-      activityStartTime:response.startTime,
-      activityRegisterDDL:response.registrationDDL,
+      activityStartTime: 
+      this.buildTime(response.startTime*1000),
+      activityRegisterDDL: 
+      this.buildTime(response.registrationDDL*1000),
       activityMaxParticipants:
       response.maxParticipantNumber,
       activityCurrentParticipants:
