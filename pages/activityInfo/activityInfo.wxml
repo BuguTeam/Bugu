@@ -4,26 +4,26 @@
         <text class="cuIcon-tagfill text-red"></text>
         <text class="text-grey">活动名称</text>
       </view>
-      <text class="text-grey">{{activityName}}</text>
+      <text class="text-grey activity-name">{{activityName}}</text>
     </view>
     <view class="cu-item {{menuArrow?'arrow':''}}">
       <view class="content">
         <text class="cuIcon-timefill text-orange"></text>
         <text class="text-grey">活动报名截止时间</text>
       </view>
-      <text class="text-grey">{{activityRegisterDDL}}</text>
+      <text class="text-grey register-ddl">{{activityRegisterDDL}}</text>
     </view>
     <view class="cu-item {{menuArrow?'arrow':''}}">
       <view class="content">
         <text class="cuIcon-timefill text-white"></text>
         <text class="text-grey">活动开始时间</text>
       </view>
-      <text class="text-grey">{{activityStartTime}}</text>
+      <text class="text-grey start-time">{{activityStartTime}}</text>
     </view>
     <view class="cu-item {{menuArrow?'arrow':''}}">
       <view class="content">
         <text class="cuIcon-emojifill text-yellow"></text>
-        <text class="text-grey">人数 {{activityCurrentParticipants}}/{{activityMaxParticipants}} {{activityStatus}}</text>
+        <text class="text-grey participants">人数 {{activityCurrentParticipants}}/{{activityMaxParticipants}} {{activityStatus}}</text>
         <view class="cu-progress round sm striped {{active?'active':''}}">
         <view class="bg-pink" style="width:{{loading?rate:''}};"></view>
       </view>
@@ -32,7 +32,7 @@
     <view class="cu-item {{menuArrow?'arrow':''}}">
       <view class="content">
         <text class="cuIcon-text text-green"></text>
-        <text class="text-grey">活动描述
+        <text class="text-grey description">活动描述
           {{activityDescription}}
         </text>
       </view>
@@ -61,7 +61,7 @@
         <text class="text-grey">{{discussionTag}}</text>
       </view>
       <view class="action">
-        <button class="cu-btn round shadow bg-cyan">
+        <button class="cu-btn round shadow bg-cyan activity-info-button">
           {{buttonMessage}}
         </button>
       </view>
