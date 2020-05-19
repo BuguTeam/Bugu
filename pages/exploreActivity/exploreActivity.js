@@ -221,6 +221,18 @@ Page({
         }
     })
   },
+
+  clickForActivityDetail: function(e){
+      console.log(e)
+      var that = this
+      var index = e.currentTarget.id
+      console.log(index)
+      //将对象转为string
+      var query = JSON.stringify(that.data.activitylist[index])
+      wx.navigateTo({
+        url: '../activityInfo/activityInfo?query=' + query,
+      })
+  },
   /**
    * 生命周期函数--监听页面加载
    */

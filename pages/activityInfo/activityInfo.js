@@ -9,16 +9,23 @@ Page({
     activityMaxParticipants:5,
     activityCurrentParticipants:2,
     activityDescription:"啦啦啦啦啦",
-    activityStatus: "招募人员中",
+    activityStatus: "",
     latitude:40,
-    longitude:120,
+    longitude:116,
     rate: "33%",
     locationName:"北京大学理科一号楼",
     hasParticipate:false,
-    buttonMessage:"点击参与活动"
+    buttonMessage:"点击参与活动",
+    discussionTag:"讨论版"
   },
-  onLoad() {
-    let fake_response =
+  buildTime: function (time) {
+    var date = new Date(time + 8 * 3600 * 1000); // 增加8小时
+    return date.toJSON().substr(0, 19).replace('T', ' ');
+  },
+  onLoad(e) {
+    let response = JSON.parse(e.query);
+    console.log(response)
+    /*let fake_response =
     {
       "id": "2", // 活动id
       "name": "约奶茶",
@@ -37,32 +44,40 @@ Page({
       "initiator": "id", 
       "participants": ["id1", "id2", "id3"],
       "discussionBoard": "id",
-    }
+    }*/
     let that = this;
     that.setData({
-      activityName:fake_response.name,
-      activityStartTime:fake_response.startTime,
-      activityRegisterDDL:fake_response.registrationDDL,
-      activityMaxParticipants: fake_response.maxParticipantNumber,
-      activityCurrentParticipants: fake_response.currentParticipantNumber,
-      activityDescription: (fake_response.description == "") ? "暂无描述" :fake_response.description,
-      activityStatus:fake_response.status,
-      latitude: parseFloat(fake_response.location.latitude),
-      longitude: parseFloat(fake_response.location.longitude),
-      rate: fake_response.maxParticipantNumber,
-      locationName: fake_response.location.name,
-      rate: (100 * parseInt(fake_response.currentParticipantNumber) / parseInt(fake_response.maxParticipantNumber))+"%",
+      activityName:response.name,
+      activityStartTime: 
+      this.buildTime(response.startTime*1000),
+      activityRegisterDDL: 
+      this.buildTime(response.registrationDDL*1000),
+      activityMaxParticipants:
+      response.maxParticipantNumber,
+      activityCurrentParticipants:
+      response.currentParticipantNumber,
+      activityDescription: (response.description == "") ? "暂无描述" :response.description,
+      //activityStatus:response.status,
+      latitude: parseFloat(response.location.latitude),
+      longitude: parseFloat(response.location.longitude),
+      //latitude: 39.991212,
+      //longitude: 116.312891,
+      locationName: response.location.name,
+      rate: (100 * parseInt(response.currentParticipantNumber) / parseInt(response.maxParticipantNumber))+"%",
     })
     let flag=false;
-    for (let i = 0; i < fake_response.participants.length;++i){
-      if(fake_response.participants[i]==fake_response.initiator){
-        flag=true;
-        break;
+    if(response.participants!=undefined){
+      for (let i = 0; i < response.participants.length;++i)      {
+        if(response.participants[i]==response.initiator){
+          flag=true;
+          break;
+        }
       }
     }
     that.setData({
       hasParticipate:flag,
-      buttonMessage:(flag)?"进入讨论版":"点击参与活动"
+      buttonMessage:(flag)?"进入讨论版":"点击参与活动",
+      discussionTag:(flag)?"讨论版":"报名参与"
     })
     setTimeout(function () {
       that.setData({

@@ -6,12 +6,8 @@
   <image src='./images/wave.gif' mode='widthFix' class='gif' style='width:100%;height:486rpx'></image>
   
   <view class='card-list'>
-    <navigator open-type="navigate" hover-class='none' url="/pages/createActivity/createActivity?id={{item.id}}" class="card-li bg-{{randomColorArr[key]}}" wx:for="{{activitylist}}" wx:key="key" wx:for-index="key">
-      <!-- 
-      TODO：上面的跳轉url现在是跳转到了添加活动的页面，
-      以後應該改成展示一個活動的頁面（目前還沒有寫），
-      并且把活動的id作爲參數傳給它 -->
-      
+    <view bindtap="clickForActivityDetail" class="card-li bg-{{randomColorArr[key]}}" wx:for="{{activitylist}}" wx:key="key" wx:for-index="key" id="{{key}}">
+
       <view class="card-time" > {{item.day}}</view>
       
       <view class="padding-sm">
@@ -39,7 +35,7 @@
       </view>
       
 
-    </navigator>
+    </view>
   </view>
   
   <view class='cu-tabbar-height'></view>
