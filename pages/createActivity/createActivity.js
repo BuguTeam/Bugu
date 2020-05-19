@@ -9,7 +9,7 @@ Page({
     startDate: '活动开始日期',
     endTime: '请选择时间',
     endDate: '报名截止日期',
-    maxParticipantNumber: undefined,
+    maxParticipantNumber: -1,
     name: "",
     description:"",
     longitude: undefined,
@@ -109,14 +109,64 @@ Page({
         icon: 'none',
         duration: 2000
       }) 
+      return;
     }
+    else if(this.data.startDate=='活动开始日期'){
+      wx.showToast({
+        title: '请设置活动开始日期!',
+        icon: 'none',
+        duration: 2000
+      }) 
+      return;
+    }
+    else if(this.data.startTime=='请选择时间'){
+      wx.showToast({
+        title: '请设置活动开始时间!',
+        icon: 'none',
+        duration: 2000
+      }) 
+      return;
+    }
+    else if (new Date(this.data.startDate + " " + this.data.startTime) < Date.now()){
+      wx.showToast({
+        title: '活动开始时间不能设置为过去!',
+        icon: 'none',
+        duration: 2000
+      })
+      return;
+    }
+
+    let endDate,endTime;
+    if (this.data.endDate == '报名截止日期'
+      || this.data.endTime == '请选择时间'){
+      endDate=this.data.startDate
+      endTime = this.data.startTime
+      wx.showToast({
+        title: '未完整设置报名截止时间,默认与活动开始时间相同!',
+        icon: 'none',
+        duration: 2000
+      }) 
+    }
+    else if (new Date(this.data.endDate + " " + this.data.endTime) < Date.now()) {
+      wx.showToast({
+        title: '活动报名截止时间不能设置为过去!',
+        icon: 'none',
+        duration: 2000
+      })
+      return;
+    }
+    else{
+      endDate = this.data.endDate
+      endTime = this.data.endTime
+    }
+
     var third_session = wx.getStorageSync('third_session');
 
     let res={
       third_session: third_session,
       name:this.data.name,
       startTime:this.data.startDate+" "+this.data.startTime,
-      registrationDDL:this.data.endDate+" "+this.data.endTime,
+      registrationDDL:endDate+" "+endTime,
       description:this.data.description,
       maxParticipantNumber: this.data.maxParticipantNumber,
       location:{

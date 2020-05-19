@@ -34,7 +34,7 @@ show-location style="width: 100%; height:490rpx;"></map>
 <view class="row">
 <view class="cu-tag radius bg-cyan tag_look start-time">开始时间</view>
 <view class="cu-form-group timePicker radius">
-  <picker mode="date" value="{{date}}" start="2020-04-01" end="2030-08-20" bindchange="startDateChange">
+  <picker mode="date" value="{{date}}" end="2030-08-20" bindchange="startDateChange">
     <view class="picker">
       {{startDate}}
     </view>
@@ -51,7 +51,7 @@ show-location style="width: 100%; height:490rpx;"></map>
 <view class="row">
 <view class="cu-tag radius bg-cyan tag_look register-ddl">截止时间</view>
 <view class="cu-form-group timePicker radius">
-  <picker mode="date" value="{{date}}" start="2020-04-01" end="2030-08-20" bindchange="endDateChange">
+  <picker mode="date" value="{{date}}" end="2030-08-20" bindchange="endDateChange">
     <view class="picker">
       {{endDate}}
     </view>
