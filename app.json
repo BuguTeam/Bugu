@@ -37,6 +37,9 @@
       }
     ]
   },
+  "usingComponents": {
+    "movableView": "./component/movableView/movableView"
+  },
   
   "permission": {
     "scope.userLocation": {

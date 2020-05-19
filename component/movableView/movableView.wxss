@@ -23,7 +23,7 @@
 .icon_bn {
     font-size: 100rpx;
     float: right;
-    background-color: #ffffff;
+    background: transparent;
     position: fixed;
     top: 20%;
     right: 10%;  

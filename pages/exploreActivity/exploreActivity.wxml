@@ -41,6 +41,6 @@
   <view class='cu-tabbar-height'></view>
   
 </scroll-view>
-<movableView bind:pagerefresh="onRefreshClick"></movableView>s
+<movableView bind:pagerefresh="onRefreshClick"></movableView>
 
 
