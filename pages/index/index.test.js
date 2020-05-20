@@ -9,6 +9,51 @@ describe('index页面测试', () => {
       wsEndpoint: 'ws://localhost:9420',
     });
     page = await miniProgram.reLaunch('../index/index');
+    page.setData({
+    part_alist: [
+        {
+          id: 4,
+          name: '約奶茶',
+          startTime: '2020-04-05 00:00:00',
+          registrationDDL: '2020-04-01 00:00:00',
+          maxParticipantNumber: 4,
+          currentParticipantNumber: 2,
+          description: "",
+          location: {
+            name: '理教',
+            longitude: 116.0,
+            latitude: 40.0,
+          }
+        },
+        {
+          id: 5,
+          name: '借充电器',
+          startTime: '2020-04-06 00:00:00',
+          registrationDDL: '2020-04-01 00:00:00',
+          maxParticipantNumber: 6,
+          currentParticipantNumber: 4,
+          description: "",
+          location: {
+            name: '理教',
+            longitude: 116.0,
+            latitude: 40.0,
+          }
+        }],
+    init_alist:[{
+          id: 4,
+          name: '約奶茶',
+          startTime: '2020-04-05 00:00:00',
+          registrationDDL: '2020-04-01 00:00:00',
+          maxParticipantNumber: 4,
+          currentParticipantNumber: 2,
+          description: "",
+          location: {
+            name: '理教',
+            longitude: 116.0,
+            latitude: 40.0,
+          }
+        }]
+    })
   });
 
   // 运行测试后调用
@@ -18,6 +63,7 @@ describe('index页面测试', () => {
 
   // 测试内容
   it("发起活动卡片是否正常显示", async () => {
+    jest.setTimeout(20000);
     const card = await page.$$('.card-li-init');
     expect(card.length > 0).toBe(true);
   })
