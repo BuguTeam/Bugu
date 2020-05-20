@@ -18,6 +18,9 @@ Page({
     limit_per_request: 6,
     lastActivityTime: '',
     
+    weekdays: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+    months: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+    
     newlist: [
     {
         id:4, 
@@ -95,6 +98,35 @@ Page({
         url: '../activityInfo/activityInfo?query=' + query,
       })
   },
+  getWeekDay: function() {
+      console.log('on update')
+      let self=this,
+          ilist = self.data.init_alist,
+          plist = self.data.part_alist,
+          i = 0,
+          ilen = self.data.init_alist.length,
+          plen = self.data.part_alist.length,
+          weekdays = self.data.weekdays,
+          months = self.data.months;
+      for (; i < ilen; i++)
+      {
+          let item = ilist[i], 
+              date = new Date(item.startTime);
+          ilist[i].day = 
+            (months[date.getMonth()]) + ' ' + date.getDate() + ' ' + (weekdays[date.getDay()]);
+      }
+      for (i = 0; i < plen; i++)
+      {
+          let item = plist[i], 
+              date = new Date(item.startTime);
+          plist[i].day = 
+            (months[date.getMonth()]) + ' ' + date.getDate() + ' ' + (weekdays[date.getDay()]);
+      }
+      self.setData({
+        init_alist: ilist,
+        part_alist: plist,
+      })
+  },
   
   getActivityList: function() {
     console.log('index - getActivityList');
@@ -141,6 +173,7 @@ Page({
             self.setData({
                 init_alist: list,
             })
+            self.getWeekDay()
             
         },
         fail: function(res) {
@@ -187,12 +220,14 @@ Page({
             self.setData({
                 part_alist: list,
             })
+            self.getWeekDay()
             
         },
         fail: function(res) {
             console.log('登陆失败！' + res.errMsg)
         }
     })
+    
   },
 
   //事件处理函数

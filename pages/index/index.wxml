@@ -27,7 +27,7 @@
             
                 <view  class="card-li bg-blue card-li-init">
 
-                  <view class="card-time" > {{item.day}}</view>
+                <view class="card-time" > {{item.day}}</view>
                   
                   <view class="padding-sm">
                       <view class="flex  p-xs margin-bottom-sm mb-sm">
@@ -43,10 +43,10 @@
                             <view class="card-text-cut">{{item.location.name}} </view>
                           </view>
               
-                          < text wx:key="{{this}}" wx:for="{{item.currentParticipantNumber}}">
+                          < text wx:key="index" wx:for="{{item.currentParticipantNumber}}">
                             <text class='cuIcon-peoplefill'></text>
                           </text>
-                          < text wx:key="{{this}}" wx:for="{{item.maxParticipantNumber-item.currentParticipantNumber}}">
+                          < text wx:key="index" wx:for="{{item.maxParticipantNumber-item.currentParticipantNumber}}">
                             <text class='cuIcon-people'></text>
                           </text>
                           
@@ -68,7 +68,7 @@
         </view>
     </view>
     <swiper class="card-swiper round-dot" indicator-dots="true" bindchange="partCardSwiper" indicator-color="#8799a3" indicator-active-color="#0081ff">
-        <swiper-item wx:for="{{part_alist}}" wx:key class="{{part_cur==index?'cur':''}}">
+        <swiper-item wx:for="{{part_alist}}" wx:key="id" class="{{part_cur==index?'cur':''}}">
             
             
             <view bindtap="clickForActivityDetail" class="card-li bg-blue card-li-part">
@@ -84,10 +84,10 @@
                       
                       
                       <view class="card-location"><text class='cuIcon-location'></text>  {{item.location.name}}</view>
-                      < text wx:key="{{this}}" wx:for="{{item.currentParticipantNumber}}">
+                      < text wx:key="index" wx:for="{{item.currentParticipantNumber}}">
                         <text class='cuIcon-peoplefill'></text>
                       </text>
-                      < text wx:key="{{this}}" wx:for="{{item.maxParticipantNumber-item.currentParticipantNumber}}">
+                      < text wx:key="index" wx:for="{{item.maxParticipantNumber-item.currentParticipantNumber}}">
                         <text class='cuIcon-people'></text>
                       </text>
                       

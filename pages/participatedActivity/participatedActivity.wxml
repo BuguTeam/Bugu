@@ -27,10 +27,10 @@
               <!--
               <view class="card-text"> {{item.description}}</view>
               -->
-              < text wx:key="{{this}}" wx:for="{{item.currentParticipantNumber}}">
+              < text wx:key="index" wx:for="{{item.currentParticipantNumber}}">
                 <text class='cuIcon-peoplefill'></text>
               </text>
-              < text wx:key="{{this}}" wx:for="{{item.maxParticipantNumber-item.currentParticipantNumber}}">
+              < text wx:key="index" wx:for="{{item.maxParticipantNumber-item.currentParticipantNumber}}">
                 <text class='cuIcon-people'></text>
               </text>
               

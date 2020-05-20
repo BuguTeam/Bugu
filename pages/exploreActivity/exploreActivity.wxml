@@ -19,17 +19,20 @@
             <view class="flex-twice padding-sm margin-xs radius">          
               
               
-              <view class="card-location"><text class='cuIcon-location'></text>  {{item.location.name}}</view>
-              <!--
-              <view class="card-text"> {{item.description}}</view>
-              -->
-              < text wx:key="{{this}}" wx:for="{{item.currentParticipantNumber}}">
-                <text class='cuIcon-peoplefill'></text>
-              </text>
-              < text wx:key="{{this}}" wx:for="{{item.maxParticipantNumber-item.currentParticipantNumber}}">
-                <text class='cuIcon-people'></text>
-              </text>
+              <view class="card-location">
+                <text class="cuIcon-location"></text>  
+                <view class="card-text-cut">{{item.location.name}} </view>
+              </view>
               
+              <view class="card-text"> {{item.description}}</view>
+              <view>
+                  < text wx:key="index" wx:for="{{item.currentParticipantNumber}}">
+                    <text class='cuIcon-peoplefill'></text>
+                  </text>
+                  < text wx:key="index" wx:for="{{item.maxParticipantNumber-item.currentParticipantNumber}}">
+                    <text class='cuIcon-people'></text>
+                  </text>
+               </view>
             </view>
           </view>
       </view>
