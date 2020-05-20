@@ -20,7 +20,8 @@ Page({
     locationLatLng:[],
     tagBackgroundColor:"#39C5BB",
     participants_value:"",
-    name_value: ""
+    name_value: "",
+    description_value:""
   },
 
   maxParticipantNumberInput: function (e) {
@@ -220,9 +221,10 @@ Page({
           icon: 'none',
           duration: 4000
         })
-        setTimeout(wx.switchTab({
-          url: "/pages/exploreActivity/exploreActivity"
-        }), 5000)
+        setTimeout(
+          wx.switchTab({
+            url: '../exploreActivity/exploreActivity'
+          }), 5000)
       }
     })
     
@@ -261,7 +263,8 @@ Page({
       locationLatLng: [],
       tagBackgroundColor: "#39C5BB",
       participants_value: "",
-      name_value:""
+      name_value:"",
+      description_value:""
     })
     wx.getLocation({
       success: res => {
