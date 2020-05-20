@@ -28,7 +28,6 @@ Page({
             longitude: 116.0,
             latitude: 40.0,
         },
-        password: undefined
     },
     {
         id:1, 
@@ -43,7 +42,6 @@ Page({
             longitude: 116.0,
             latitude: 40.0,
         },
-        password: undefined
     },
     
     {
@@ -59,7 +57,6 @@ Page({
             longitude: 116.0,
             latitude: 40.0,
         },
-        password: undefined
     },
     {
         id:3, 
@@ -74,7 +71,6 @@ Page({
             longitude: 116.0,
             latitude: 40.0,
         },
-        password: undefined
     },
     ],
     
@@ -92,7 +88,6 @@ Page({
             longitude: 116.0,
             latitude: 40.0,
         },
-        password: undefined
     },
     {
         id:5, 
@@ -107,7 +102,6 @@ Page({
             longitude: 116.0,
             latitude: 40.0,
         },
-        password: undefined
     },
     
     {
@@ -123,7 +117,6 @@ Page({
             longitude: 116.0,
             latitude: 40.0,
         },
-        password: undefined
     }],
     
     limit_per_request: 3,
