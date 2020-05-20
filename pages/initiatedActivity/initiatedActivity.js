@@ -7,13 +7,13 @@ Page({
    */
   data: {
     colorArr: app.globalData.ColorList,
+    weekdays: app.globalData.weekdays,
+    months: app.globalData.months,
+    
     /*
      *colorArr: ['cyan', 'blue', 'mauve', 'pink', 'red', 'orange', 'green', 'purple'],
      */
     randomColorArr: [], 
-    weekdays: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-    Monate: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-        
     activitylist: [],
     show_message: false,
     
@@ -97,14 +97,14 @@ Page({
           i = 0,
           len = self.data.activitylist.length,
           weekdays = self.data.weekdays,
-          Monate = self.data.Monate;
+          months = self.data.months;
       for (; i < len; i++)
       {
           let item = activitylist[i], 
               date = new Date(item.startTime);
           console.log("data: ", date);
           activitylist[i].day = 
-            (Monate[date.getMonth()]) + ' ' + date.getDate() + ' ' + (weekdays[date.getDay()]);
+            (months[date.getMonth()]) + ' ' + date.getDate() + ' ' + (weekdays[date.getDay()]);
       }
       self.setData({
         activitylist: activitylist

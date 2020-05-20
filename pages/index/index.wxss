@@ -46,6 +46,20 @@ swiper{
 }
 
 
+.card-li {
+  padding: 15rpx;
+  border-radius: 12rpx;
+  width: 95%;
+  height: 250rxp;
+  margin: 0 2.5% 40rpx;
+  position: relative;
+  z-index: 1;
+  background-image: url(https://image.weilanwl.com/color2.0/cardBg.png);
+  background-size: cover;
+  background-position: center;
+}
+
+
 .card-title {
   font-size: 24rpx;
   font-weight: 300;
@@ -55,3 +69,10 @@ swiper{
   font-size: 30rpx;
   margin-right: 4rpx;
 }
+
+
+.card-location {
+  margin-bottom: 20rpx;
+}
+
+

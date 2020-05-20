@@ -7,13 +7,15 @@ Page({
    */
   data: {
     colorArr: app.globalData.ColorList,
+    weekdays: app.globalData.weekdays,
+    months: app.globalData.months,
     /*
      *colorArr: ['cyan', 'blue', 'mauve', 'pink', 'red', 'orange', 'green', 'purple'],
      */
     randomColorArr: [], 
-    weekdays: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-    Monate: ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'],
-        
+    longitude: undefined,
+    latitude: undefined,
+    
     activitylist: [
     {
         id:0, 
@@ -153,7 +155,7 @@ Page({
           i = 0,
           len = self.data.activitylist.length,
           weekdays = self.data.weekdays,
-          Monate = self.data.Monate;
+          Monate = self.data.months;
       for (; i < len; i++)
       {
           let item = activitylist[i], 
@@ -173,14 +175,18 @@ Page({
             third_session: third_session,
             limit: JSON.stringify(self.data.limit_per_request),
             lastActivityTime: JSON.stringify(self.data.lastActivityTime),
+            longitude: JSON.stringify(self.data.longitude),
+            latitude: JSON.stringify(self.data.latitude),
         }
-    console.log('sends ', send)
+    console.log('explore sends ', send)
     wx.request({
         url: 'http://127.0.0.1:5000/user/getActivityList',
         data: {
             third_session: third_session,
             limit: JSON.stringify(self.data.limit_per_request),
             lastActivityTime: JSON.stringify(self.data.lastActivityTime),
+            longitude: JSON.stringify(self.data.longitude),
+            latitude: JSON.stringify(self.data.latitude),
         },
         method: 'POST',
         header: {
@@ -237,7 +243,16 @@ Page({
           lastActivityTime: '',
       })
     // 获取最新发布的活动列表
-    self.getActivityList()
+    wx.getLocation({
+        success: res => {
+            self.setData({
+                longitude: res.longitude,
+                latitude: res.latitude
+            })
+            self.getActivityList()
+        }
+    })
+    
     
   },
 
@@ -327,7 +342,15 @@ Page({
           lastActivityTime: '',
       })
     // 获取最新发布的活动列表
-    self.getActivityList()
+    wx.getLocation({
+        success: res => {
+            self.setData({
+                longitude: res.longitude,
+                latitude: res.latitude
+            })
+            self.getActivityList()
+        }
+    })
       
   }
 })
