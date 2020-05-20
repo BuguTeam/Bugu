@@ -61,7 +61,7 @@
         <text class="text-grey">{{discussionTag}}</text>
       </view>
       <view class="action">
-        <button class="cu-btn round shadow bg-cyan activity-info-button">
+        <button class="cu-btn round shadow bg-cyan activity-info-button" bindtap="clickButton" >
           {{buttonMessage}}
         </button>
       </view>
