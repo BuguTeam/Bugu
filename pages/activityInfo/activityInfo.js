@@ -49,9 +49,10 @@ Page({
     that.setData({
       activityName:response.name,
       activityStartTime: 
-      this.buildTime(response.startTime*1000),
+        typeof (response.startTime) == 'string' ? response.startTime : this.buildTime(response.startTime*1000),
       activityRegisterDDL: 
-      this.buildTime(response.registrationDDL*1000),
+        typeof (response.registrationDDL)=='string'?
+response.registrationDDL:this.buildTime(response.registrationDDL*1000),
       activityMaxParticipants:
       response.maxParticipantNumber,
       activityCurrentParticipants:

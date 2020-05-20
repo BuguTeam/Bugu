@@ -28,7 +28,7 @@ show-location style="width: 100%; height:490rpx;"></map>
   <view class="row">
     <view class="cu-tag radius bg-cyan tag_look activity-name">名称</view>
     <view class="cu-form-group radius input_look">
-      <input placeholder="活动名称" bindinput="nameInput"></input>
+      <input placeholder="活动名称" bindinput="nameInput" value="{{name_value}}"></input>
     </view>
   </view>
 <view class="row">
@@ -69,12 +69,12 @@ show-location style="width: 100%; height:490rpx;"></map>
   <view class="cu-tag radius bg-cyan tag_look participants">最大参与人数
   </view>
   <view class="cu-form-group radius input_look">
-    <input placeholder="最大参与人数" bindinput="maxParticipantNumberInput"></input>
+    <input placeholder="最大参与人数" bindinput="maxParticipantNumberInput" type="number" value="{{participants_value}}"></input>
   </view>
 </view>
   <view class="cu-form-group align-start radius description_container">
       <view class="title description">描述</view>
-      <textarea maxlength="1000" disabled="{{modalName!=null}}" bindinput="descriptionInput"></textarea>
+      <textarea maxlength="1000" bindinput="descriptionInput"></textarea>
   </view>
 </view>
 <view class="solid-bottom colomn">
