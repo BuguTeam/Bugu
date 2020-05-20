@@ -1,6 +1,4 @@
-<view class='msg-box'>
-  <!-- 留言 -->
-  <view class='send-box'><scroll-view scroll-top="{{scrollTop}}" scroll-y="true" style="height:{{scrollHeight}}px;" class="list" bindscrolltolower="bindDownLoad" bindscrolltoupper="refresh">
+<scroll-view scroll-top="{{scrollTop}}" scroll-y="true" style="height:{{scrollHeight}}px;" class="list" bindscrolltolower="bindDownLoad" bindscrolltoupper="refresh">
   <view class="pro-con">
     <block wx:for="{{list}}" wx:key="{{index}}">
       <view class="pro-box">
