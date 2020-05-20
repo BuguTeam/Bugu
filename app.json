@@ -4,6 +4,7 @@
     "pages/activityInfo/activityInfo",
     "pages/createActivity/createActivity",
     "pages/exploreActivity/exploreActivity",
+    "pages/initiatedActivity/initiatedActivity",
     "pages/logs/logs"
   ],
   "window": {
