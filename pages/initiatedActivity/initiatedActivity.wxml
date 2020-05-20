@@ -20,7 +20,10 @@
             <view class="flex-twice padding-sm margin-xs radius">          
               
               
-              <view class="card-location"><text class='cuIcon-location'></text>  {{item.location.name}}</view>
+              <view class="card-location">
+                <text class="cuIcon-location"></text>  
+                <view class="card-text-cut">{{item.location.name}} </view>
+              </view>
               <!--
               <view class="card-text"> {{item.description}}</view>
               -->

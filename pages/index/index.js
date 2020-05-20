@@ -238,6 +238,18 @@ Page({
     })
     self.getActivityList()
   },
+  
+  onShow: function () {
+      console.log('onShow:')
+      
+      var self = this;
+      self.setData({
+          init_alist: [],
+          part_alist: [],
+      })
+      self.getActivityList()
+      
+  },
   getUserInfo: function(e) {
     console.log(e)
     app.globalData.userInfo = e.detail.userInfo
