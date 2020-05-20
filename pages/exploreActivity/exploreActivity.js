@@ -121,6 +121,8 @@ Page({
     
     limit_per_request: 3,
     lastActivityTime: '', 
+    longitude: 116.0,       // 随便定的坐标，防止请求getActivityList()中请求位置出错
+    latitude: 40.0,
     tagBackgroundColor:"#39C5BB"
   },
 
@@ -169,10 +171,20 @@ Page({
     let self = this,
         third_session = wx.getStorageSync('third_session');
     console.log('get third_session: ', third_session)
+    wx.getLocation({
+        success: res => {
+            self.setData({
+              longitude: res.longitude,
+              latitude: res.latitude
+            })
+        }
+    })
     let send = {
             third_session: third_session,
             limit: JSON.stringify(self.data.limit_per_request),
             lastActivityTime: JSON.stringify(self.data.lastActivityTime),
+            longitude: JSON.stringify(self.data.longitude), 
+            latitude: JSON.stringify(self.data.latitude),
         }
     console.log('sends ', send)
     wx.request({
@@ -181,6 +193,8 @@ Page({
             third_session: third_session,
             limit: JSON.stringify(self.data.limit_per_request),
             lastActivityTime: JSON.stringify(self.data.lastActivityTime),
+            longitude: JSON.stringify(self.data.longitude), 
+            latitude: JSON.stringify(self.data.latitude),
         },
         method: 'POST',
         header: {
