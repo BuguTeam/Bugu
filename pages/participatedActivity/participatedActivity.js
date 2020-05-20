@@ -1,4 +1,4 @@
-// pages/exploreActivity/exploreActivity.js
+// pages/participatedActivity/participatedActivity.js
 const app = getApp();
 Page({
 
@@ -12,67 +12,10 @@ Page({
      */
     randomColorArr: [], 
     weekdays: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-    Monate: ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'],
+    Monate: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
         
-    activitylist: [
-    {
-        id:0, 
-        name:'約奶茶', 
-        startTime: '2020-04-01 00:02:00', 
-        registrationDDL: '2020-04-01 00:02:00',
-        maxParticipantNumber:4,
-        currentParticipantNumber:2,
-        description: "",
-        location: {
-            name: '理教',
-            longitude: 116.0,
-            latitude: 40.0,
-        },
-    },
-    {
-        id:1, 
-        name:'借充电器', 
-        startTime: '2020-04-02 00:01:00', 
-        registrationDDL: '2020-04-01 00:01:00',
-        maxParticipantNumber:6,
-        currentParticipantNumber:4,
-        description: "",
-        location: {
-            name: '理教',
-            longitude: 116.0,
-            latitude: 40.0,
-        },
-    },
-    
-    {
-        id:2, 
-        name:'拼外卖', 
-        startTime: '2020-04-03 00:00:00', 
-        registrationDDL: '2020-04-01 00:00:00',
-        maxParticipantNumber:6,
-        currentParticipantNumber:4,
-        description: "",
-        location: {
-            name: '理教',
-            longitude: 116.0,
-            latitude: 40.0,
-        },
-    },
-    {
-        id:3, 
-        name:'約奶茶', 
-        startTime: '2020-04-04 00:00:00', 
-        registrationDDL: '2020-04-01 00:00:00',
-        maxParticipantNumber:6,
-        currentParticipantNumber:4,
-        description: "",
-        location: {
-            name: '理教',
-            longitude: 116.0,
-            latitude: 40.0,
-        },
-    },
-    ],
+    activitylist: [],
+    show_message: false,
     
     newlist: [
     {
@@ -121,7 +64,8 @@ Page({
     
     limit_per_request: 3,
     lastActivityTime: '', 
-    tagBackgroundColor:"#39C5BB"
+    tagBackgroundColor:"#39C5BB",
+    message: undefined,
   },
 
   tapName: function(event) {
@@ -157,7 +101,8 @@ Page({
       for (; i < len; i++)
       {
           let item = activitylist[i], 
-              date = new Date(item.startTime * 1000);
+              date = new Date(item.startTime);
+          console.log("data: ", date);
           activitylist[i].day = 
             (Monate[date.getMonth()]) + ' ' + date.getDate() + ' ' + (weekdays[date.getDay()]);
       }
@@ -176,9 +121,11 @@ Page({
         }
     console.log('sends ', send)
     wx.request({
-        url: 'http://127.0.0.1:5000/user/getActivityList',
+        url: 'http://127.0.0.1:5000/user/UserActivityHistory',
         data: {
             third_session: third_session,
+            character: JSON.stringify("participant"),
+            status: JSON.stringify("全部"),
             limit: JSON.stringify(self.data.limit_per_request),
             lastActivityTime: JSON.stringify(self.data.lastActivityTime),
         },
@@ -192,14 +139,29 @@ Page({
             console.log('request getActList returns: ', res.data)
             console.log('request getActList returns: ', res.data.alist)
             let list = self.data.newlist
-            if (typeof self.data.activitylist !== "undefined")
+            if (typeof self.data.activitylist !== 'undefined')
                 list = self.data.activitylist
+            
             console.log('current list: ', list)
        
+            let newlist = self.data.newlist;
             if (typeof res.data.alist !== "undefined")
-                list = list.concat(res.data.alist)
-            else
-                list = list.concat(self.data.newlist)
+                newlist = res.data.alist
+            
+            list = list.concat(newlist)
+            /*
+            // For debug
+            if (list.length == 0)
+              list = self.data.newlist
+            */
+            // For deployment
+            if (list.length == 0) {
+                self.setData({
+                    message: 'You have not participated any activity yet!',
+                    show_message:true
+                })
+            }
+            
             self.setData({
                 activitylist: list,
                 lastActivityTime: res.data.lastActivityTime
@@ -252,15 +214,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-      console.log('onShow:')
-      /*
-      var self = this;
-      self.setData({
-          activitylist: [],
-          lastActivityTime: '',
-      })
-      self.getActivityList()
-      */
   },
 
   /**
