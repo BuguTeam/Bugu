@@ -2,7 +2,7 @@
 <map id="map" 
 longitude="{{longitude}}" 
 latitude="{{latitude}}" 
-scale="14" 
+scale="16" 
 controls="{{controls}}" 
 bindcontroltap="controltap" 
 markers="{{markers}}" 
@@ -18,23 +18,23 @@ show-location style="width: 100%; height:490rpx;"></map>
 </view>
 
 <view class="padding solid-bottom colomn">
-  <view class="row">
-    <view class="cu-tag radius tag_look" bindtap="tapOnLocationTag" style="background-color:{{tagBackgroundColor}};color:white">位置</view>
+  <view class="row activity-location">
+    <view class="cu-tag radius tag_look activity-location-label" bindtap="tapOnLocationTag" style="background-color:{{tagBackgroundColor}};color:white">位置</view>
     <view class="cu-form-group radius input_look">
-      <view><input placeholder="{{location}}" bindchange="locationInput"></input></view>
+      <view><input value="{{location}}" bindchange="locationInput"></input></view>
       <view class="searchSize"><picker range="{{locationList}}" class="cuIcon-locationfill text-orange" showvalue="title" bindchange="locationPicker">搜索</picker></view>
     </view>
   </view>
   <view class="row">
-    <view class="cu-tag radius bg-cyan tag_look">名称</view>
+    <view class="cu-tag radius bg-cyan tag_look activity-name">名称</view>
     <view class="cu-form-group radius input_look">
-      <input placeholder="活动名称" bindinput="nameInput"></input>
+      <input placeholder="活动名称" bindinput="nameInput" value="{{name_value}}"></input>
     </view>
   </view>
 <view class="row">
-<view class="cu-tag radius bg-cyan tag_look">开始时间        </view>
+<view class="cu-tag radius bg-cyan tag_look start-time">开始时间</view>
 <view class="cu-form-group timePicker radius">
-  <picker mode="date" value="{{date}}" start="2020-04-01" end="2030-08-20" bindchange="startDateChange">
+  <picker mode="date" value="{{date}}" end="2030-08-20" bindchange="startDateChange">
     <view class="picker">
       {{startDate}}
     </view>
@@ -49,9 +49,9 @@ show-location style="width: 100%; height:490rpx;"></map>
 </view>
 </view>
 <view class="row">
-<view class="cu-tag radius bg-cyan tag_look">截止时间</view>
+<view class="cu-tag radius bg-cyan tag_look register-ddl">截止时间</view>
 <view class="cu-form-group timePicker radius">
-  <picker mode="date" value="{{date}}" start="2020-04-01" end="2030-08-20" bindchange="endDateChange">
+  <picker mode="date" value="{{date}}" end="2030-08-20" bindchange="endDateChange">
     <view class="picker">
       {{endDate}}
     </view>
@@ -66,15 +66,15 @@ show-location style="width: 100%; height:490rpx;"></map>
 </view>
 </view>
 <view class="row">
-  <view class="cu-tag radius bg-cyan tag_look">最大参与人数
+  <view class="cu-tag radius bg-cyan tag_look participants">最大参与人数
   </view>
   <view class="cu-form-group radius input_look">
-    <input placeholder="最大参与人数" bindinput="maxParticipantNumberInput"></input>
+    <input placeholder="最大参与人数" bindinput="maxParticipantNumberInput" type="number" value="{{participants_value}}"></input>
   </view>
 </view>
   <view class="cu-form-group align-start radius description_container">
       <view class="title description">描述</view>
-      <textarea maxlength="1000" disabled="{{modalName!=null}}" bindinput="descriptionInput"></textarea>
+      <textarea maxlength="1000" bindinput="descriptionInput" value="{{description_value}}"></textarea>
   </view>
 </view>
 <view class="solid-bottom colomn">

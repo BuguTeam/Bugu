@@ -1,10 +1,11 @@
-<!--pages/exploreActivity/exploreActivity.wxml-->
+<!--pages/participatedActivity/participatedActivity.wxml-->
+<view wx:if="{{show_message}}"> 
+  <text>{{message}}</text>
+</view>
 <scroll-view scroll-y 
     bindscrolltolower="bottomHandler" scrolltoupper="upperHandler" class="scrollPage">
 
 
-  <image src='./images/wave.gif' mode='widthFix' class='gif' style='width:100%;height:486rpx'></image>
-  
   <view class='card-list'>
     <view bindtap="clickForActivityDetail" class="card-li bg-{{randomColorArr[key]}}" wx:for="{{activitylist}}" wx:key="key" wx:for-index="key" id="{{key}}">
 
@@ -23,16 +24,16 @@
                 <text class="cuIcon-location"></text>  
                 <view class="card-text-cut">{{item.location.name}} </view>
               </view>
-              
+              <!--
               <view class="card-text"> {{item.description}}</view>
-              <view>
-                  < text wx:key="index" wx:for="{{item.currentParticipantNumber}}">
-                    <text class='cuIcon-peoplefill'></text>
-                  </text>
-                  < text wx:key="index" wx:for="{{item.maxParticipantNumber-item.currentParticipantNumber}}">
-                    <text class='cuIcon-people'></text>
-                  </text>
-               </view>
+              -->
+              < text wx:key="index" wx:for="{{item.currentParticipantNumber}}">
+                <text class='cuIcon-peoplefill'></text>
+              </text>
+              < text wx:key="index" wx:for="{{item.maxParticipantNumber-item.currentParticipantNumber}}">
+                <text class='cuIcon-people'></text>
+              </text>
+              
             </view>
           </view>
       </view>

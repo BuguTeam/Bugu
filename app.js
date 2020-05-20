@@ -1,5 +1,10 @@
 //app.js
+var util = require('./utils/util.js');
 App({
+    
+  // 用户登录
+  
+  
   onLaunch: function () {
     // 展示本地存储能力
     var logs = wx.getStorageSync('logs') || []
@@ -7,11 +12,8 @@ App({
     wx.setStorageSync('logs', logs)
 
     // 登录
-    wx.login({
-      success: res => {
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
-      }
-    })
+    util.onLogin()
+    
     // 获取用户信息
     wx.getSetting({
       success: res => {
@@ -21,7 +23,9 @@ App({
             success: res => {
               // 可以将 res 发送给后台解码出 unionId
               this.globalData.userInfo = res.userInfo
-
+              console.log('userInfo: ', res.userInfo)
+              console.log('encryptedData: ', res.encryptedData)
+              console.log('iv: ', res.iv)
               // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
               // 所以此处加入 callback 以防止这种情况
               if (this.userInfoReadyCallback) {
@@ -35,6 +39,10 @@ App({
   },
   globalData: {
     userInfo: null,
+    cookie: '', 
+    
+    weekdays: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+    months: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
     ColorList: [{
         title: '嫣红',
         name: 'red',
