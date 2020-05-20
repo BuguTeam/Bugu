@@ -3,6 +3,7 @@ Page({
   data: {
     ColorList: app.globalData.ColorList,
     color: 'red',
+    activityID:undefined,
     activityName:"买奶茶",
     activityStartTime:"2020-5-8 12:00:00",
     activityRegisterDDL: "2020-5-9 12:00:00",
@@ -47,17 +48,19 @@ Page({
     }*/
     let that = this;
     that.setData({
+      activityID:response.id,
       activityName:response.name,
       activityStartTime: 
-      this.buildTime(response.startTime*1000),
+        typeof (response.startTime) == 'string' ? response.startTime : this.buildTime(response.startTime),
       activityRegisterDDL: 
-      this.buildTime(response.registrationDDL*1000),
+        typeof (response.registrationDDL)=='string'?
+response.registrationDDL:this.buildTime(response.registrationDDL),
       activityMaxParticipants:
       response.maxParticipantNumber,
       activityCurrentParticipants:
       response.currentParticipantNumber,
       activityDescription: (response.description == "") ? "暂无描述" :response.description,
-      //activityStatus:response.status,
+      activityStatus:response.status,
       latitude: parseFloat(response.location.latitude),
       longitude: parseFloat(response.location.longitude),
       //latitude: 39.991212,
@@ -105,5 +108,30 @@ Page({
     this.setData({
       active: e.detail.value
     })
+  },
+  clickButton: function(e){
+    let self = this;
+    if (self.data.buttonMessage =="点击参与活动"){
+      wx.request({
+        url: "http://127.0.0.1:5000/user/joinActivity",
+        data: {
+          third_session:wx.getStorageSync('third_session'),
+          activity_id:self.data.activityID
+        },
+        method: "POST",
+        header: {
+          'content-type': 'application/x-www-form-urlencoded',
+          'chartset': 'utf-8'
+        },
+        success: function (res) {
+          console.log(res);
+          wx.showToast({
+            title: res.data,
+            icon: 'none',
+            duration: 4000
+          })
+        }
+      })
+    }
   }
 })

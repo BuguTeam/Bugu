@@ -9,7 +9,7 @@ Page({
     startDate: '活动开始日期',
     endTime: '请选择时间',
     endDate: '报名截止日期',
-    maxParticipantNumber: -1,
+    maxParticipantNumber: undefined,
     name: "",
     description:"",
     longitude: undefined,
@@ -18,7 +18,9 @@ Page({
     phoneLoc:undefined,
     locationList:[],
     locationLatLng:[],
-    tagBackgroundColor:"#39C5BB"
+    tagBackgroundColor:"#39C5BB",
+    participants_value:"",
+    name_value: ""
   },
 
   maxParticipantNumberInput: function (e) {
@@ -135,7 +137,17 @@ Page({
       })
       return;
     }
-
+    else if(this.data.maxParticipantNumber!=undefined&&this.data.maxParticipantNumber<=0){
+      console.log(this.data.maxParticipantNumber)
+      wx.showToast({
+        title: '最大参与人数应大于0!',
+        icon: 'none',
+        duration: 2000
+      })
+      return;
+    }
+    if(this.data.maxParticipantNumber==undefined)
+      this.data.maxParticipantNumber=-1
     let endDate,endTime;
     if (this.data.endDate == '报名截止日期'
       || this.data.endTime == '请选择时间'){
@@ -186,7 +198,7 @@ Page({
             
         name:JSON.stringify(this.data.name),
         startTime:JSON.stringify(this.data.startDate+" "+this.data.startTime),
-        registrationDDL:JSON.stringify(this.data.endDate+" "+this.data.endTime),
+        registrationDDL:JSON.stringify(endDate+" "+endTime),
         description:JSON.stringify(this.data.description),
         maxParticipantNumber: JSON.stringify(this.data.maxParticipantNumber),
         location:JSON.stringify({
@@ -206,11 +218,11 @@ Page({
         wx.showToast({
           title: res.data,
           icon: 'none',
-          duration: 2000
-        });
-        //wx.redirectTo({
-        //  url: "/pages/exploreActivity/exploreActivity"
-        //})
+          duration: 4000
+        })
+        setTimeout(wx.switchTab({
+          url: "/pages/exploreActivity/exploreActivity"
+        }), 5000)
       }
     })
     
@@ -219,24 +231,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let self=this
-    wx.getLocation({
-      success:res=>{
-        self.setData({
-          longitude: res.longitude,
-          latitude: res.latitude
-        })
-        wx.request({
-          url: "https://apis.map.qq.com/ws/geocoder/v1/?location=" + this.data.latitude + "," + this.data.longitude + "&key=FQNBZ-2UYCJ-3QVF3-F7JAP-INVST-4JBYR&get_poi=1",
-          success: function (res) {
-            self.setData({
-              location:res.data.result.formatted_addresses.recommend,
-              phoneLoc: res.data.result.formatted_addresses.recommend
-            })
-          }
-        })
-      }
-    })
   },
 
   /**
@@ -250,7 +244,42 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    let self = this
+    self.setData({
+      startTime: '请选择时间',
+      startDate: '活动开始日期',
+      endTime: '请选择时间',
+      endDate: '报名截止日期',
+      maxParticipantNumber: undefined,
+      name: "",
+      description: "",
+      longitude: undefined,
+      latitude: undefined,
+      location: "",
+      phoneLoc: undefined,
+      locationList: [],
+      locationLatLng: [],
+      tagBackgroundColor: "#39C5BB",
+      participants_value: "",
+      name_value:""
+    })
+    wx.getLocation({
+      success: res => {
+        self.setData({
+          longitude: res.longitude,
+          latitude: res.latitude
+        })
+        wx.request({
+          url: "https://apis.map.qq.com/ws/geocoder/v1/?location=" + this.data.latitude + "," + this.data.longitude + "&key=FQNBZ-2UYCJ-3QVF3-F7JAP-INVST-4JBYR&get_poi=1",
+          success: function (res) {
+            self.setData({
+              location: res.data.result.formatted_addresses.recommend,
+              phoneLoc: res.data.result.formatted_addresses.recommend
+            })
+          }
+        })
+      }
+    })
   },
 
   /**
