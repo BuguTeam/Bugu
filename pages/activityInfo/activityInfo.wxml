@@ -1,0 +1,68 @@
+  <view class="cu-list menu {{menuBorder?'sm-border':''}} {{menuCard?'card-menu margin-top':''}}">
+    <view class="cu-item {{menuArrow?'arrow':''}}">
+      <view class="content">
+        <text class="cuIcon-tagfill text-red"></text>
+        <text class="text-grey">活动名称</text>
+      </view>
+      <text class="text-grey">{{activityName}}</text>
+    </view>
+    <view class="cu-item {{menuArrow?'arrow':''}}">
+      <view class="content">
+        <text class="cuIcon-timefill text-orange"></text>
+        <text class="text-grey">活动报名截止时间</text>
+      </view>
+      <text class="text-grey">{{activityRegisterDDL}}</text>
+    </view>
+    <view class="cu-item {{menuArrow?'arrow':''}}">
+      <view class="content">
+        <text class="cuIcon-timefill text-white"></text>
+        <text class="text-grey">活动开始时间</text>
+      </view>
+      <text class="text-grey">{{activityStartTime}}</text>
+    </view>
+    <view class="cu-item {{menuArrow?'arrow':''}}">
+      <view class="content">
+        <text class="cuIcon-emojifill text-yellow"></text>
+        <text class="text-grey">人数 {{activityCurrentParticipants}}/{{activityMaxParticipants}} {{activityStatus}}</text>
+        <view class="cu-progress round sm striped {{active?'active':''}}">
+        <view class="bg-pink" style="width:{{loading?rate:''}};"></view>
+      </view>
+      </view>
+    </view>
+    <view class="cu-item {{menuArrow?'arrow':''}}">
+      <view class="content">
+        <text class="cuIcon-text text-green"></text>
+        <text class="text-grey">活动描述
+          {{activityDescription}}
+        </text>
+      </view>
+    </view>
+    <view class="cu-item {{menuArrow?'arrow':''}}">
+      <view class="content">
+        <text class="cuIcon-locationfill text-blue"></text>
+        <text class="text-grey">地理位置限制 {{locationName}}</text>
+        <map id="map" 
+          longitude="{{longitude}}" 
+          latitude="{{latitude}}" 
+          scale="14" 
+          controls="{{controls}}" 
+          bindcontroltap="controltap" 
+          markers="{{markers}}" 
+          bindmarkertap="markertap"
+          polyline="{{polyline}}" 
+          bindregionchange="regionchange" 
+          show-location style="width: 100%; height:490rpx;"></map>
+      </view>
+    </view>
+    <view class="cu-item {{menuArrow?'arrow':''}}">
+      <view class="content">
+        <text class="cuIcon-discoverfill text-purple"></text>
+        <text class="text-grey">讨论板</text>
+      </view>
+      <view class="action">
+        <button class="cu-btn round shadow bg-cyan">
+          {{buttonMessage}}
+        </button>
+      </view>
+    </view>
+  </view>
