@@ -187,7 +187,7 @@ function userInfoSetInSQL(userInfo) {
     })
 }
 
-function getWeekday(alist) {
+function getWeekday (alist) {
   let i = 0, len = alist.length;
   for (; i < len; i++)
   {
@@ -197,7 +197,7 @@ function getWeekday(alist) {
   }
 }
 
-function generateRandomBgColor(length) {
+function generateRandomBgColor (length) {
   let colorArr = ColorList,
       colorNum = colorArr.length,
       randomColorArr = [],
@@ -211,6 +211,8 @@ function generateRandomBgColor(length) {
         
     return randomColorArr
 }
+
+
 module.exports = {
   formatTime: formatTime,
   onLogin: onLogin,

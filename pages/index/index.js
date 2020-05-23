@@ -10,7 +10,6 @@ Page({
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     
-    colorArr: app.globalData.ColorList,
     fakelist: app.globalData.activity_list_fake,
     
     init_cur: 0,

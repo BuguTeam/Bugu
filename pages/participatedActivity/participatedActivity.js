@@ -7,7 +7,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-    colorArr: app.globalData.ColorList,
     newlist: app.globalData.activity_list_fake,
     
     randomColorArr: [], 
@@ -71,25 +70,30 @@ Page({
         },
         
         success:function(res){
-            console.log('request getActList returns: ', res.data)
-            console.log('request getActList returns: ', res.data.alist)
-            let list = self.data.newlist
-            if (typeof self.data.activitylist !== 'undefined')
-                list = self.data.activitylist
             
-            console.log('current list: ', list)
-       
-            let newlist = self.data.newlist;
+            let oldList = self.data.fakeList,
+                newList = self.data.fakeList;
+                
+            if (typeof self.data.activitylist !== "undefined")
+                oldList = self.data.activitylist
+            else
+                util.getWeekday(oldList)
+            
             if (typeof res.data.alist !== "undefined")
-                newlist = res.data.alist
+                newList = res.data.alist
+       
+            util.getWeekday(newList)
             
-            list = list.concat(newlist)
+            let list = oldList.concat(newList),
+                randomColorArr = self.data.randomColorArr.concat(util.generateRandomBgColor(newList.length));
+            
             /*
             // For debug
             if (list.length == 0)
               list = self.data.newlist
             */
             // For deployment
+            // If current activity list is empty, show a message.
             if (list.length == 0) {
                 self.setData({
                     message: 'You have not participated any activity yet!',
@@ -97,14 +101,12 @@ Page({
                 })
             }
             
-            util.getWeekday(list)
             self.setData({
                 activitylist: list,
-                lastActivityTime: res.data.lastActivityTime
+                lastActivityTime: res.data.lastActivityTime,
+                randomColorArr: randomColorArr
             })
             
-            self.generateRandomBgColor()
-            console.log(self.data.activitylist)
         },
         fail: function(res) {
             console.log('登陆失败！' + res.errMsg)

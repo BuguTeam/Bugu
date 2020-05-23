@@ -7,7 +7,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-    colorArr: app.globalData.ColorList,
     fakeList: app.globalData.activity_list_fake,
     
     randomColorArr: [], 
@@ -73,7 +72,7 @@ Page({
             if (typeof self.data.activitylist !== "undefined")
                 oldList = self.data.activitylist
             else
-                util.getWeekdat(oldList)
+                util.getWeekday(oldList)
             
             if (typeof res.data.alist !== "undefined")
                 newList = res.data.alist
