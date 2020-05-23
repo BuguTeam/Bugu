@@ -7,60 +7,15 @@ Page({
    */
   data: {
     colorArr: app.globalData.ColorList,
-    /*
-     *colorArr: ['cyan', 'blue', 'mauve', 'pink', 'red', 'orange', 'green', 'purple'],
-     */
+    weekdays: app.globalData.weekdays,
+    months: app.globalData.months,
+    newlist: app.globalData.activity_list_fake,
+    
     randomColorArr: [], 
-    weekdays: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-    Monate: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
         
     activitylist: [],
     show_message: false,
     
-    newlist: [
-    {
-        id:4, 
-        name:'約奶茶', 
-        startTime: '2020-04-05 00:00:00', 
-        registrationDDL: '2020-04-01 00:00:00',
-        maxParticipantNumber:4,
-        currentParticipantNumber:2,
-        description: "",
-        location: {
-            name: '理教',
-            longitude: 116.0,
-            latitude: 40.0,
-        },
-    },
-    {
-        id:5, 
-        name:'借充电器', 
-        startTime: '2020-04-06 00:00:00', 
-        registrationDDL: '2020-04-01 00:00:00',
-        maxParticipantNumber:6,
-        currentParticipantNumber:4,
-        description: "",
-        location: {
-            name: '理教',
-            longitude: 116.0,
-            latitude: 40.0,
-        },
-    },
-    
-    {
-        id:6, 
-        name:'拼外卖', 
-        startTime: '2020-04-07 00:00:00', 
-        registrationDDL: '2020-04-01 00:00:00',
-        maxParticipantNumber:6,
-        currentParticipantNumber:4,
-        description: "",
-        location: {
-            name: '理教',
-            longitude: 116.0,
-            latitude: 40.0,
-        },
-    }],
     
     limit_per_request: 3,
     lastActivityTime: '', 
@@ -97,14 +52,14 @@ Page({
           i = 0,
           len = self.data.activitylist.length,
           weekdays = self.data.weekdays,
-          Monate = self.data.Monate;
+          months = self.data.months;
       for (; i < len; i++)
       {
           let item = activitylist[i], 
               date = new Date(item.startTime);
           console.log("data: ", date);
           activitylist[i].day = 
-            (Monate[date.getMonth()]) + ' ' + date.getDate() + ' ' + (weekdays[date.getDay()]);
+            (months[date.getMonth()]) + ' ' + date.getDate() + ' ' + (weekdays[date.getDay()]);
       }
       self.setData({
         activitylist: activitylist

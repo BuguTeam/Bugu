@@ -9,6 +9,11 @@ Page({
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     
+    colorArr: app.globalData.ColorList,
+    weekdays: app.globalData.weekdays,
+    months: app.globalData.months,
+    newlist: app.globalData.activity_list_fake,
+    
     init_cur: 0,
     init_alist: [],
 
@@ -17,54 +22,7 @@ Page({
 
     limit_per_request: 6,
     lastActivityTime: '',
-    
-    weekdays: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-    months: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-    
-    newlist: [
-    {
-        id:4, 
-        name:'約奶茶', 
-        startTime: '2020-04-05 00:00:00', 
-        registrationDDL: '2020-04-01 00:00:00',
-        maxParticipantNumber:4,
-        currentParticipantNumber:2,
-        description: "",
-        location: {
-            name: '理教',
-            longitude: 116.0,
-            latitude: 40.0,
-        },
-    },
-    {
-        id:5, 
-        name:'借充电器', 
-        startTime: '2020-04-06 00:00:00', 
-        registrationDDL: '2020-04-01 00:00:00',
-        maxParticipantNumber:6,
-        currentParticipantNumber:4,
-        description: "",
-        location: {
-            name: '理教',
-            longitude: 116.0,
-            latitude: 40.0,
-        },
-    },
-    
-    {
-        id:6, 
-        name:'拼外卖', 
-        startTime: '2020-04-07 00:00:00', 
-        registrationDDL: '2020-04-01 00:00:00',
-        maxParticipantNumber:6,
-        currentParticipantNumber:4,
-        description: "",
-        location: {
-            name: '理教',
-            longitude: 116.0,
-            latitude: 40.0,
-        },
-    }],
+
   },
   // cardSwiper
   partCardSwiper(e) {
@@ -270,6 +228,7 @@ Page({
     self.setData({
         init_alist: [],
         part_alist: [],
+        lastActivityTime: '',
     })
     self.getActivityList()
   },
@@ -281,6 +240,7 @@ Page({
       self.setData({
           init_alist: [],
           part_alist: [],
+          lastActivityTime: '',
       })
       self.getActivityList()
       

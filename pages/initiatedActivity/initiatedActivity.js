@@ -17,50 +17,6 @@ Page({
     activitylist: [],
     show_message: false,
     
-    newlist: [
-    {
-        id:4, 
-        name:'約奶茶', 
-        startTime: '2020-04-05 00:00:00', 
-        registrationDDL: '2020-04-01 00:00:00',
-        maxParticipantNumber:4,
-        currentParticipantNumber:2,
-        description: "",
-        location: {
-            name: '理教',
-            longitude: 116.0,
-            latitude: 40.0,
-        },
-    },
-    {
-        id:5, 
-        name:'借充电器', 
-        startTime: '2020-04-06 00:00:00', 
-        registrationDDL: '2020-04-01 00:00:00',
-        maxParticipantNumber:6,
-        currentParticipantNumber:4,
-        description: "",
-        location: {
-            name: '理教',
-            longitude: 116.0,
-            latitude: 40.0,
-        },
-    },
-    
-    {
-        id:6, 
-        name:'拼外卖', 
-        startTime: '2020-04-07 00:00:00', 
-        registrationDDL: '2020-04-01 00:00:00',
-        maxParticipantNumber:6,
-        currentParticipantNumber:4,
-        description: "",
-        location: {
-            name: '理教',
-            longitude: 116.0,
-            latitude: 40.0,
-        },
-    }],
     
     limit_per_request: 3,
     lastActivityTime: '', 

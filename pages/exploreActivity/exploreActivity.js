@@ -9,117 +9,14 @@ Page({
     colorArr: app.globalData.ColorList,
     weekdays: app.globalData.weekdays,
     months: app.globalData.months,
-    /*
-     *colorArr: ['cyan', 'blue', 'mauve', 'pink', 'red', 'orange', 'green', 'purple'],
-     */
+    newlist: app.globalData.activity_list_fake,
+    
     randomColorArr: [], 
     longitude: undefined,
     latitude: undefined,
     
-    activitylist: [
-    {
-        id:0, 
-        name:'約奶茶', 
-        startTime: '2020-04-01 00:02:00', 
-        registrationDDL: '2020-04-01 00:02:00',
-        maxParticipantNumber:4,
-        currentParticipantNumber:2,
-        description: "",
-        location: {
-            name: '理教',
-            longitude: 116.0,
-            latitude: 40.0,
-        },
-    },
-    {
-        id:1, 
-        name:'借充电器', 
-        startTime: '2020-04-02 00:01:00', 
-        registrationDDL: '2020-04-01 00:01:00',
-        maxParticipantNumber:6,
-        currentParticipantNumber:4,
-        description: "",
-        location: {
-            name: '理教',
-            longitude: 116.0,
-            latitude: 40.0,
-        },
-    },
+    activitylist: [],
     
-    {
-        id:2, 
-        name:'拼外卖', 
-        startTime: '2020-04-03 00:00:00', 
-        registrationDDL: '2020-04-01 00:00:00',
-        maxParticipantNumber:6,
-        currentParticipantNumber:4,
-        description: "",
-        location: {
-            name: '理教',
-            longitude: 116.0,
-            latitude: 40.0,
-        },
-    },
-    {
-        id:3, 
-        name:'約奶茶', 
-        startTime: '2020-04-04 00:00:00', 
-        registrationDDL: '2020-04-01 00:00:00',
-        maxParticipantNumber:6,
-        currentParticipantNumber:4,
-        description: "",
-        location: {
-            name: '理教',
-            longitude: 116.0,
-            latitude: 40.0,
-        },
-    },
-    ],
-    
-    newlist: [
-    {
-        id:4, 
-        name:'約奶茶', 
-        startTime: '2020-04-05 00:00:00', 
-        registrationDDL: '2020-04-01 00:00:00',
-        maxParticipantNumber:4,
-        currentParticipantNumber:2,
-        description: "",
-        location: {
-            name: '理教',
-            longitude: 116.0,
-            latitude: 40.0,
-        },
-    },
-    {
-        id:5, 
-        name:'借充电器', 
-        startTime: '2020-04-06 00:00:00', 
-        registrationDDL: '2020-04-01 00:00:00',
-        maxParticipantNumber:6,
-        currentParticipantNumber:4,
-        description: "",
-        location: {
-            name: '理教',
-            longitude: 116.0,
-            latitude: 40.0,
-        },
-    },
-    
-    {
-        id:6, 
-        name:'拼外卖', 
-        startTime: '2020-04-07 00:00:00', 
-        registrationDDL: '2020-04-01 00:00:00',
-        maxParticipantNumber:6,
-        currentParticipantNumber:4,
-        description: "",
-        location: {
-            name: '理教',
-            longitude: 116.0,
-            latitude: 40.0,
-        },
-    }],
     
     limit_per_request: 3,
     lastActivityTime: '', 
@@ -161,7 +58,7 @@ Page({
       for (; i < len; i++)
       {
           let item = activitylist[i], 
-              date = new Date(item.startTime * 1000);
+              date = new Date(item.startTime);
           activitylist[i].day = 
             (Monate[date.getMonth()]) + ' ' + date.getDate() + ' ' + (weekdays[date.getDay()]);
       }

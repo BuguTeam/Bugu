@@ -43,6 +43,23 @@ App({
     
     weekdays: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
     months: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+    
+    activity_list_fake: [
+    {
+        id : 40, 
+        name:'約奶茶', 
+        startTime: 1597852800000.0, 
+        registrationDDL: 1597852800000.0,
+        maxParticipantNumber:4,
+        currentParticipantNumber:2,
+        description: "Coco奶茶拼单",
+        location: {
+            name: '理教',
+            longitude: 116.0,
+            latitude: 40.0,
+        },
+    },],
+    
     ColorList: [{
         title: '嫣红',
         name: 'red',
