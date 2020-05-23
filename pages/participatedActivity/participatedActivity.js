@@ -1,5 +1,6 @@
 // pages/participatedActivity/participatedActivity.js
 const app = getApp();
+var util = require('../../utils/util.js');
 Page({
 
   /**
@@ -7,14 +8,11 @@ Page({
    */
   data: {
     colorArr: app.globalData.ColorList,
-    weekdays: app.globalData.weekdays,
-    months: app.globalData.months,
     newlist: app.globalData.activity_list_fake,
     
     randomColorArr: [], 
         
     activitylist: [],
-    show_message: false,
     
     
     limit_per_request: 3,
@@ -23,6 +21,7 @@ Page({
     message: undefined,
   },
 
+    show_message: false,
   tapName: function(event) {
     console.log(event)
   },
@@ -46,25 +45,6 @@ Page({
     })
   },
   
-  getWeekday: function() {
-      let self=this,
-          activitylist = self.data.activitylist,
-          i = 0,
-          len = self.data.activitylist.length,
-          weekdays = self.data.weekdays,
-          months = self.data.months;
-      for (; i < len; i++)
-      {
-          let item = activitylist[i], 
-              date = new Date(item.startTime);
-          console.log("data: ", date);
-          activitylist[i].day = 
-            (months[date.getMonth()]) + ' ' + date.getDate() + ' ' + (weekdays[date.getDay()]);
-      }
-      self.setData({
-        activitylist: activitylist
-    })
-  },
   getActivityList: function() {
     let self = this,
         third_session = wx.getStorageSync('third_session');
@@ -117,13 +97,13 @@ Page({
                 })
             }
             
+            util.getWeekday(list)
             self.setData({
                 activitylist: list,
                 lastActivityTime: res.data.lastActivityTime
             })
             
             self.generateRandomBgColor()
-            self.getWeekday()
             console.log(self.data.activitylist)
         },
         fail: function(res) {

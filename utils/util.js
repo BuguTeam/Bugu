@@ -1,3 +1,84 @@
+const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+const ColorList = [{
+        title: '嫣红',
+        name: 'red',
+        color: '#e54d42'
+      },
+      {
+        title: '桔橙',
+        name: 'orange',
+        color: '#f37b1d'
+      },
+      {
+        title: '明黄',
+        name: 'yellow',
+        color: '#fbbd08'
+      },
+      {
+        title: '橄榄',
+        name: 'olive',
+        color: '#8dc63f'
+      },
+      {
+        title: '森绿',
+        name: 'green',
+        color: '#39b54a'
+      },
+      {
+        title: '天青',
+        name: 'cyan',
+        color: '#1cbbb4'
+      },
+      {
+        title: '海蓝',
+        name: 'blue',
+        color: '#0081ff'
+      },
+      {
+        title: '姹紫',
+        name: 'purple',
+        color: '#6739b6'
+      },
+      {
+        title: '木槿',
+        name: 'mauve',
+        color: '#9c26b0'
+      },
+      {
+        title: '桃粉',
+        name: 'pink',
+        color: '#e03997'
+      },
+      {
+        title: '棕褐',
+        name: 'brown',
+        color: '#a5673f'
+      },
+      {
+        title: '玄灰',
+        name: 'grey',
+        color: '#8799a3'
+      },
+      /*
+      {
+        title: '草灰',
+        name: 'gray',
+        color: '#aaaaaa'
+      },
+      {
+        title: '墨黑',
+        name: 'black',
+        color: '#333333'
+      },
+      {
+        title: '雅白',
+        name: 'white',
+        color: '#ffffff'
+      },*/
+    ]
+
 const formatTime = date => {
   const year = date.getFullYear()
   const month = date.getMonth() + 1
@@ -8,14 +89,17 @@ const formatTime = date => {
 
   return [year, month, day].map(formatNumber).join('/') + ' ' + [hour, minute, second].map(formatNumber).join(':')
 }
+const readableDay = date => {
+  const month = months[date.getMonth()]
+  const day = date.getDate()
+  const weekday = weekdays[date.getDay()]
+  
+  return month + ' ' + day + ' ' + weekday
+}
 
 const formatNumber = n => {
   n = n.toString()
   return n[1] ? n : '0' + n
-}
-
-module.exports = {
-  formatTime: formatTime
 }
 
 function userLogin () {
@@ -102,4 +186,34 @@ function userInfoSetInSQL(userInfo) {
         }
     })
 }
-module.exports.onLogin = onLogin; //暴露接口
+
+function getWeekday(alist) {
+  let i = 0, len = alist.length;
+  for (; i < len; i++)
+  {
+      let item = alist[i], 
+          date = new Date(item.startTime);
+      alist[i].day = readableDay(date)
+  }
+}
+
+function generateRandomBgColor(length) {
+  let colorArr = ColorList,
+      colorNum = colorArr.length,
+      randomColorArr = [],
+      randomColorLen = 0,
+      targetLength = length;
+    do {
+        let random = colorArr[Math.floor(Math.random() * colorNum)];
+        randomColorArr.push(random.name);
+        randomColorLen ++;
+    } while (randomColorLen < targetLength)
+        
+    return randomColorArr
+}
+module.exports = {
+  formatTime: formatTime,
+  onLogin: onLogin,
+  getWeekday: getWeekday,
+  generateRandomBgColor: generateRandomBgColor,
+}

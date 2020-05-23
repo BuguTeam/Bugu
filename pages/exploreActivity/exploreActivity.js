@@ -1,5 +1,6 @@
 // pages/exploreActivity/exploreActivity.js
 const app = getApp();
+var util = require('../../utils/util.js');
 Page({
 
   /**
@@ -7,9 +8,7 @@ Page({
    */
   data: {
     colorArr: app.globalData.ColorList,
-    weekdays: app.globalData.weekdays,
-    months: app.globalData.months,
-    newlist: app.globalData.activity_list_fake,
+    fakeList: app.globalData.activity_list_fake,
     
     randomColorArr: [], 
     longitude: undefined,
@@ -29,43 +28,7 @@ Page({
     console.log(event)
   },
   
-  generateRandomBgColor: function() {
-    // 为activitylist中每一卡片生成随机颜色
-    let self=this,
-        colorArr = self.data.colorArr,
-        colorNum = colorArr.length,
-        randomColorArr = self.data.randomColorArr,
-        randomColorLen = randomColorArr.length,
-        listLen = self.data.activitylist.length;
-    do {
-        let random = colorArr[Math.floor(Math.random() * colorNum)];
-        randomColorArr.push(random.name);
-        randomColorLen ++;
-    } while (randomColorLen < listLen)
-        
-    self.setData({
-        randomColorArr: randomColorArr
-    })
-  },
   
-  getWeekday: function() {
-      let self=this,
-          activitylist = self.data.activitylist,
-          i = 0,
-          len = self.data.activitylist.length,
-          weekdays = self.data.weekdays,
-          Monate = self.data.months;
-      for (; i < len; i++)
-      {
-          let item = activitylist[i], 
-              date = new Date(item.startTime);
-          activitylist[i].day = 
-            (Monate[date.getMonth()]) + ' ' + date.getDate() + ' ' + (weekdays[date.getDay()]);
-      }
-      self.setData({
-        activitylist: activitylist
-    })
-  },
   getActivityList: function() {
     let self = this,
         third_session = wx.getStorageSync('third_session');
@@ -104,22 +67,28 @@ Page({
         success:function(res){
             console.log('request getActList returns: ', res.data)
             console.log('request getActList returns: ', res.data.alist)
-            let list = self.data.newlist
+            let oldList = self.data.fakeList,
+                newList = self.data.fakeList;
+                
             if (typeof self.data.activitylist !== "undefined")
-                list = self.data.activitylist
-            console.log('current list: ', list)
-       
-            if (typeof res.data.alist !== "undefined")
-                list = list.concat(res.data.alist)
+                oldList = self.data.activitylist
             else
-                list = list.concat(self.data.newlist)
+                util.getWeekdat(oldList)
+            
+            if (typeof res.data.alist !== "undefined")
+                newList = res.data.alist
+       
+            util.getWeekday(newList)
+            
+            let list = oldList.concat(newList),
+                randomColorArr = self.data.randomColorArr.concat(util.generateRandomBgColor(newList.length));
+            
             self.setData({
                 activitylist: list,
-                lastActivityTime: res.data.lastActivityTime
+                lastActivityTime: res.data.lastActivityTime,
+                randomColorArr: randomColorArr
             })
             
-            self.generateRandomBgColor()
-            self.getWeekday()
             console.log(self.data.activitylist)
         },
         fail: function(res) {
@@ -139,16 +108,21 @@ Page({
         url: '../activityInfo/activityInfo?query=' + query,
       })
   },
+  
+  clearDataOnRefresh: function () {
+    var self = this;
+    self.setData({
+      activitylist: [],
+      lastActivityTime: '',
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-      console.log('onLoad:')
-      var self = this;
-      self.setData({
-          activitylist: [],
-          lastActivityTime: '',
-      })
+    console.log('onLoad:')
+    var self = this;
+    self.clearDataOnRefresh()
     // 获取最新发布的活动列表
     wx.getLocation({
         success: res => {
@@ -160,59 +134,22 @@ Page({
         }
     })
     
-    
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
       console.log('onShow:')
-      /*
-      var self = this;
-      self.setData({
-          activitylist: [],
-          lastActivityTime: '',
-      })
-      self.getActivityList()
-      */
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
       console.log('onPullDownRefresh')
-  },
-  upperHandler: function() {
-      console.log('upperHandler')
-    // TODO: 获取最新发布的活动列表
-    
-      self.setData({
-          activitylist: self.data.newlist
-      })
-      
   },
 
   /**
@@ -242,12 +179,9 @@ Page({
 
   },
   onRefreshClick: function() {
-      console.log('onRefreshClick:')
-      var self = this;
-      self.setData({
-          activitylist: [],
-          lastActivityTime: '',
-      })
+    console.log('onRefreshClick:')
+    var self = this;
+    self.clearDataOnRefresh()
     // 获取最新发布的活动列表
     wx.getLocation({
         success: res => {

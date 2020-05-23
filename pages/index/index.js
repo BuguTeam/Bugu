@@ -1,6 +1,7 @@
 //index.js
 //获取应用实例
 const app = getApp()
+var util = require('../../utils/util.js');
 
 Page({
   data: {
@@ -10,9 +11,7 @@ Page({
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     
     colorArr: app.globalData.ColorList,
-    weekdays: app.globalData.weekdays,
-    months: app.globalData.months,
-    newlist: app.globalData.activity_list_fake,
+    fakelist: app.globalData.activity_list_fake,
     
     init_cur: 0,
     init_alist: [],
@@ -21,7 +20,7 @@ Page({
     part_alist: [],
 
     limit_per_request: 6,
-    lastActivityTime: '',
+    defaultLastActivityTime: '',
 
   },
   // cardSwiper
@@ -56,36 +55,6 @@ Page({
         url: '../activityInfo/activityInfo?query=' + query,
       })
   },
-  getWeekDay: function() {
-      console.log('on update')
-      let self=this,
-          ilist = self.data.init_alist,
-          plist = self.data.part_alist,
-          i = 0,
-          ilen = self.data.init_alist.length,
-          plen = self.data.part_alist.length,
-          weekdays = self.data.weekdays,
-          months = self.data.months;
-      for (; i < ilen; i++)
-      {
-          let item = ilist[i], 
-              date = new Date(item.startTime);
-          ilist[i].day = 
-            (months[date.getMonth()]) + ' ' + date.getDate() + ' ' + (weekdays[date.getDay()]);
-      }
-      for (i = 0; i < plen; i++)
-      {
-          let item = plist[i], 
-              date = new Date(item.startTime);
-          plist[i].day = 
-            (months[date.getMonth()]) + ' ' + date.getDate() + ' ' + (weekdays[date.getDay()]);
-      }
-      self.setData({
-        init_alist: ilist,
-        part_alist: plist,
-      })
-  },
-  
   getActivityList: function() {
     console.log('index - getActivityList');
     let self = this,
@@ -99,7 +68,7 @@ Page({
             character: JSON.stringify("initiator"),
             status: JSON.stringify("全部"),
             limit: JSON.stringify(self.data.limit_per_request),
-            lastActivityTime: JSON.stringify(self.data.lastActivityTime),
+            lastActivityTime: JSON.stringify(self.data.defaultLastActivityTime),
         },
         method: 'POST',
         header: {
@@ -111,13 +80,13 @@ Page({
             console.log('request getActList returns: ', res.data)
             console.log('request getActList returns: ', res.data.alist)
        
-            let list = self.data.newlist;
+            let list = self.data.fakelist;
             if (typeof res.data.alist !== "undefined")
                 list = res.data.alist
             
             // For debug
             if (list.length == 0)
-              list = self.data.newlist
+              list = self.data.fakelist
             /*
             // For deployment
             if (list.length == 0) {
@@ -127,11 +96,10 @@ Page({
                 })
             }
             */
-            
+            util.getWeekday(list)
             self.setData({
                 init_alist: list,
             })
-            self.getWeekDay()
             
         },
         fail: function(res) {
@@ -146,7 +114,7 @@ Page({
             character: JSON.stringify("participant"),
             status: JSON.stringify("全部"),
             limit: JSON.stringify(self.data.limit_per_request),
-            lastActivityTime: JSON.stringify(self.data.lastActivityTime),
+            lastActivityTime: JSON.stringify(self.data.defaultLastActivityTime),
         },
         method: 'POST',
         header: {
@@ -158,13 +126,13 @@ Page({
             console.log('request part getActList returns: ', res.data)
             console.log('request part getActList returns: ', res.data.alist)
        
-            let list = self.data.newlist;
+            let list = self.data.fakelist;
             if (typeof res.data.alist !== "undefined")
                 list = res.data.alist
             
             // For debug
             if (list.length == 0)
-              list = self.data.newlist
+              list = self.data.fakelist
             /*
             // For deployment
             if (list.length == 0) {
@@ -174,11 +142,10 @@ Page({
                 })
             }
             */
-            
+            util.getWeekday(list)
             self.setData({
                 part_alist: list,
             })
-            self.getWeekDay()
             
         },
         fail: function(res) {
@@ -195,6 +162,14 @@ Page({
     })
   },
   
+  
+  clearDataOnRefresh: function () {
+    let self=this
+    self.setData({
+        init_alist: [],
+        part_alist: [],
+    })
+  },
   
   onLoad: function () {
     if (app.globalData.userInfo) {
@@ -224,25 +199,16 @@ Page({
       })
     }
     
-    let self=this
-    self.setData({
-        init_alist: [],
-        part_alist: [],
-        lastActivityTime: '',
-    })
+    let self = this;
+    self.clearDataOnRefresh()
     self.getActivityList()
   },
   
   onShow: function () {
-      console.log('onShow:')
-      
-      var self = this;
-      self.setData({
-          init_alist: [],
-          part_alist: [],
-          lastActivityTime: '',
-      })
-      self.getActivityList()
+    console.log('onShow:')
+    let self = this;
+    self.clearDataOnRefresh()
+    self.getActivityList()
       
   },
   getUserInfo: function(e) {
