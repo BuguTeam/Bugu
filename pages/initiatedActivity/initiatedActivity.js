@@ -187,7 +187,7 @@ Page({
    */
   bottomHandler: function () {
       console.log('bottomHandler')
-      let self=this;
+      let self = this;
       self.getActivityList()
       console.log(self.data.activitylist)
   },
@@ -208,5 +208,33 @@ Page({
     // 获取最新发布的活动列表
     self.getActivityList()
       
+  },
+  
+  clickDeleteButton: function(e){
+    let self = this;
+    let index = e.currentTarget.dataset.actindex,
+        activity_id = self.data.activitylist[index].id;
+    console.log('clickDeleteButton: ', activity_id)
+    console.log('e: ', e)
+    wx.request({
+        url: "http://127.0.0.1:5000/user/exitfromActivity",
+        data: {
+          third_session: wx.getStorageSync('third_session'),
+          activity_id: activity_id
+        },
+        method: "POST",
+        header: {
+          'content-type': 'application/x-www-form-urlencoded',
+          'chartset': 'utf-8'
+        },
+        success: function (res) {
+          console.log(res);
+          wx.showToast({
+            title: res.data,
+            icon: 'none',
+            duration: 4000
+          })
+        }
+    })
   }
 })

@@ -34,6 +34,13 @@
                 <text class='cuIcon-people'></text>
               </text>
               
+              
+              <view class="action">
+                <button class="cu-btn round shadow bg-cyan delete-button" bindtap="clickDeleteButton" data-actindex="{{key}}">
+                  delete
+                </button>
+              </view>
+              
             </view>
           </view>
       </view>
