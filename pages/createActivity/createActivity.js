@@ -1,4 +1,5 @@
 // pages/createActivity/createActivity.js
+const app = getApp()
 Page({
 
   /**
@@ -193,7 +194,7 @@ Page({
     console.log(res)
     
     wx.request({
-      url: "http://39.104.25.65:80/user/addActivity",
+      url: app.globalData.rootUrl + "user/addActivity",
       data: {
         third_session: third_session,
             

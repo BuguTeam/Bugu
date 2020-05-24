@@ -17,7 +17,8 @@ Page({
     locationName:"北京大学理科一号楼",
     hasParticipate:false,
     buttonMessage:"点击参与活动",
-    discussionTag:"讨论版"
+    discussionTag:"讨论版",
+    discussionID: undefined
   },
   buildTime: function (time) {
     var date = new Date(time + 8 * 3600 * 1000); // 增加8小时
@@ -68,17 +69,8 @@ response.registrationDDL:this.buildTime(response.registrationDDL),
       locationName: response.location.name,
       rate: (100 * parseInt(response.currentParticipantNumber) / parseInt(response.maxParticipantNumber))+"%",
     })
-    let flag=false;
-    if(response.participants!=undefined){
-      for (let i = 0; i < response.participants.length;++i)      {
-        if(response.participants[i]==response.initiator){
-          flag=true;
-          break;
-        }
-      }
-    }
+    let flag=hasParticipate;
     that.setData({
-      hasParticipate:flag,
       buttonMessage:(flag)?"进入讨论版":"点击参与活动",
       discussionTag:(flag)?"讨论版":"报名参与"
     })
@@ -113,7 +105,7 @@ response.registrationDDL:this.buildTime(response.registrationDDL),
     let self = this;
     if (self.data.buttonMessage =="点击参与活动"){
       wx.request({
-        url: "http://39.104.25.65:80/user/joinActivity",
+        url: app.globalData.rootUrl + "user/joinActivity",
         data: {
           third_session:wx.getStorageSync('third_session'),
           activity_id:self.data.activityID

@@ -61,7 +61,7 @@ Page({
     console.log('get third_session: ', third_session)
     
     wx.request({
-        url: 'http://39.104.25.65:80/user/UserActivityHistory',
+        url: app.globalData.rootUrl + 'user/UserActivityHistory',
         data: {
             third_session: third_session,
             character: JSON.stringify("initiator"),
@@ -107,7 +107,7 @@ Page({
     })
     
     wx.request({
-        url: 'http://39.104.25.65:80/user/UserActivityHistory',
+        url: app.globalData.rootUrl + 'user/UserActivityHistory',
         data: {
             third_session: third_session,
             character: JSON.stringify("participant"),

@@ -35,7 +35,7 @@ Page({
         }
     console.log('sends ', send)
     wx.request({
-        url: 'http://39.104.25.65:80/user/UserActivityHistory',
+        url: app.globalData.rootUrl + 'user/UserActivityHistory',
         data: {
             third_session: third_session,
             character: JSON.stringify("initiator"),
@@ -217,7 +217,7 @@ Page({
     console.log('clickDeleteButton: ', activity_id)
     console.log('e: ', e)
     wx.request({
-        url: "http://39.104.25.65:80/user/exitfromActivity",
+        url: app.globalData.rootUrl + "user/exitfromActivity",
         data: {
           third_session: wx.getStorageSync('third_session'),
           activity_id: activity_id

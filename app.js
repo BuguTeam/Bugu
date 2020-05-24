@@ -4,7 +4,6 @@ App({
     
   // 用户登录
   
-  
   onLaunch: function () {
     // 展示本地存储能力
     var logs = wx.getStorageSync('logs') || []
@@ -38,6 +37,9 @@ App({
     })
   },
   globalData: {
+    deployment: false,
+    //rootUrl: 'http://39.104.25.65:80/',
+    rootUrl: 'http://127.0.0.1:5000/',
     userInfo: null,
     cookie: '', 
     

@@ -49,7 +49,7 @@ Page({
         }
     console.log('explore sends ', send)
     wx.request({
-        url: 'http://39.104.25.65:80/user/getActivityList',
+        url: app.globalData.rootUrl + 'user/getActivityList',
         data: {
             third_session: third_session,
             limit: JSON.stringify(self.data.limit_per_request),
