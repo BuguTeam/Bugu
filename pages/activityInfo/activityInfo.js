@@ -51,10 +51,10 @@ Page({
       activityID:response.id,
       activityName:response.name,
       activityStartTime: 
-        typeof (response.startTime) == 'string' ? response.startTime : this.buildTime(response.startTime*1000),
+        typeof (response.startTime) == 'string' ? response.startTime : this.buildTime(response.startTime),
       activityRegisterDDL: 
         typeof (response.registrationDDL)=='string'?
-response.registrationDDL:this.buildTime(response.registrationDDL*1000),
+response.registrationDDL:this.buildTime(response.registrationDDL),
       activityMaxParticipants:
       response.maxParticipantNumber,
       activityCurrentParticipants:
@@ -126,7 +126,7 @@ response.registrationDDL:this.buildTime(response.registrationDDL*1000),
         success: function (res) {
           console.log(res);
           wx.showToast({
-            title: "成功加入活动!",
+            title: res.data,
             icon: 'none',
             duration: 4000
           })
