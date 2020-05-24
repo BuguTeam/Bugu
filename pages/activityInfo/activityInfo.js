@@ -15,7 +15,8 @@ Page({
     longitude:116,
     rate: "33%",
     locationName:"北京大学理科一号楼",
-    hasParticipate:false,
+    hasParticipated:false,
+    hasInitiated:false,
     buttonMessage:"点击参与活动",
     discussionTag:"讨论版",
     discussionID: undefined
@@ -55,7 +56,7 @@ Page({
         typeof (response.startTime) == 'string' ? response.startTime : this.buildTime(response.startTime),
       activityRegisterDDL: 
         typeof (response.registrationDDL)=='string'?
-response.registrationDDL:this.buildTime(response.registrationDDL),
+      response.registrationDDL:this.buildTime(response.registrationDDL),
       activityMaxParticipants:
       response.maxParticipantNumber,
       activityCurrentParticipants:
@@ -68,8 +69,12 @@ response.registrationDDL:this.buildTime(response.registrationDDL),
       //longitude: 116.312891,
       locationName: response.location.name,
       rate: (100 * parseInt(response.currentParticipantNumber) / parseInt(response.maxParticipantNumber))+"%",
+      hasParticipated: response.hasParticipate,
+      hasInitiated: response.hasInitiated,
+      
     })
-    let flag=hasParticipate;
+    let flag=response.hasParticipated;
+    console.log(flag)
     that.setData({
       buttonMessage:(flag)?"进入讨论版":"点击参与活动",
       discussionTag:(flag)?"讨论版":"报名参与"
