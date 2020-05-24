@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/messageBoard/messageBoard",
     "pages/activityInfo/activityInfo",
     "pages/createActivity/createActivity",
     "pages/exploreActivity/exploreActivity",

@@ -51,10 +51,10 @@ Page({
       activityID:response.id,
       activityName:response.name,
       activityStartTime: 
-        typeof (response.startTime) == 'string' ? response.startTime : this.buildTime(response.startTime),
+        typeof (response.startTime) == 'string' ? response.startTime : this.buildTime(response.startTime*1000),
       activityRegisterDDL: 
         typeof (response.registrationDDL)=='string'?
-response.registrationDDL:this.buildTime(response.registrationDDL),
+response.registrationDDL:this.buildTime(response.registrationDDL*1000),
       activityMaxParticipants:
       response.maxParticipantNumber,
       activityCurrentParticipants:
@@ -113,7 +113,7 @@ response.registrationDDL:this.buildTime(response.registrationDDL),
     let self = this;
     if (self.data.buttonMessage =="点击参与活动"){
       wx.request({
-        url: "http://127.0.0.1:5000/user/joinActivity",
+        url: "http://39.104.25.65:80/user/joinActivity",
         data: {
           third_session:wx.getStorageSync('third_session'),
           activity_id:self.data.activityID
@@ -126,7 +126,7 @@ response.registrationDDL:this.buildTime(response.registrationDDL),
         success: function (res) {
           console.log(res);
           wx.showToast({
-            title: res.data,
+            title: "成功加入活动!",
             icon: 'none',
             duration: 4000
           })

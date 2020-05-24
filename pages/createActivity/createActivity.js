@@ -193,7 +193,7 @@ Page({
     console.log(res)
     
     wx.request({
-      url: "http://127.0.0.1:5000/user/addActivity",
+      url: "http://39.104.25.65:80/user/addActivity",
       data: {
         third_session: third_session,
             

@@ -123,7 +123,7 @@ function onLogin() {
               
               console.log('returns code=: ', res.code)
               wx.request({
-                  url: 'http://127.0.0.1:5000/login', // TODO
+                  url: 'http://39.104.25.65:80/login',
                   method: 'post',
                   data: {
                       code: res.code
@@ -167,7 +167,7 @@ function userInfoSetInSQL(userInfo) {
     var third_session = wx.getStorageSync('third_session');
     console.log('3rd_session: ', third_session)
     wx.request({
-        url: 'http://127.0.0.1:5000/register',
+        url: 'http://39.104.25.65:80/register',
         method: 'post',
         data: {
             third_session: third_session,
