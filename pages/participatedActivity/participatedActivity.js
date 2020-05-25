@@ -206,4 +206,31 @@ Page({
     self.getActivityList()
       
   }
+  clickDeleteButton: function(e){
+    let self = this;
+    let index = e.currentTarget.dataset.actindex,
+        activity_id = self.data.activitylist[index].id;
+    console.log('clickDeleteButton: ', activity_id)
+    console.log('e: ', e)
+    wx.request({
+        url: app.globalData.rootUrl + "user/exitfromActivity",
+        data: {
+          third_session: wx.getStorageSync('third_session'),
+          activity_id: activity_id
+        },
+        method: "POST",
+        header: {
+          'content-type': 'application/x-www-form-urlencoded',
+          'chartset': 'utf-8'
+        },
+        success: function (res) {
+          console.log(res);
+          wx.showToast({
+            title: res.data,
+            icon: 'none',
+            duration: 4000
+          })
+        }
+    })
+  }
 })

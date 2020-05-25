@@ -140,7 +140,19 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-      console.log('onShow:')
+    console.log('onShow:')
+    var self = this;
+    self.clearDataOnRefresh()
+    // 获取最新发布的活动列表
+    wx.getLocation({
+        success: res => {
+            self.setData({
+                longitude: res.longitude,
+                latitude: res.latitude
+            })
+            self.getActivityList()
+        }
+    })
   },
 
 
