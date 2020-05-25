@@ -60,6 +60,9 @@ App({
             longitude: 116.0,
             latitude: 40.0,
         },
+        
+        hasParticipated:false,
+        hasInitiated:false,
     },],
     
     ColorList: [{

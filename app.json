@@ -1,9 +1,9 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/messageBoard/messageBoard",
-    "pages/activityInfo/activityInfo",
     "pages/createActivity/createActivity",
+    "pages/activityInfo/activityInfo",
+    "pages/messageBoard/messageBoard",
     "pages/exploreActivity/exploreActivity",
     "pages/initiatedActivity/initiatedActivity",
     "pages/logs/logs"

@@ -87,13 +87,14 @@ Page({
             let list = oldList.concat(newList),
                 randomColorArr = self.data.randomColorArr.concat(util.generateRandomBgColor(newList.length));
             
-            /*
+            
             // For debug
             if (list.length == 0)
               list = self.data.newlist
-            */
+            
             // For deployment
             // If current activity list is empty, show a message.
+            
             if (list.length == 0) {
                 self.setData({
                     message: 'You have not participated any activity yet!',

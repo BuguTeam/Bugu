@@ -117,7 +117,7 @@ Page({
   // 此处的回调函数在 传入新值之前执行 主要用来清除页面信息
   getPageInfo(page, callback) {
     var that = this;
-    util.showLoading();
+    //util.showLoading();
     console.log("getPageInfo");
     console.log("page" + page);
     var limited = 6;
