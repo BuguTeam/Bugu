@@ -7,7 +7,7 @@
 
 
   <view class='card-list'>
-    <view bindtap="clickForActivityDetail" class="card-li bg-{{randomColorArr[key]}}" wx:for="{{activitylist}}" wx:key="key" wx:for-index="key" id="{{key}}">
+    <view bindtap="clickForActivityDetail" class="card-li bg-{{item.color}}" wx:for="{{activitylist}}" wx:key="key" wx:for-index="key" id="{{key}}">
 
       <view class="card-time" > {{item.day}}</view>
       
@@ -33,8 +33,9 @@
               < text wx:key="index" wx:for="{{item.maxParticipantNumber-item.currentParticipantNumber}}">
                 <text class='cuIcon-people'></text>
               </text>
+              <view class="card-text"> {{item.status}}</view>
               
-              <view class="action">
+              <view wx:if="{{item.status=='招募人员中'}}" class="action">
                 <button class="cu-btn round shadow bg-white delete-button" style="width:120rpx" catchtap="clickDeleteButton"  hover-stop-propagation="true" data-actindex="{{key}}">
                   <text class='cuIcon-roundclose'></text> exit
                 </button>

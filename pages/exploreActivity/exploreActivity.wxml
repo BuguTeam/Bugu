@@ -33,6 +33,8 @@
                     <text class='cuIcon-people'></text>
                   </text>
                </view>
+               
+              <view class="card-text"> {{item.status}}</view>
             </view>
           </view>
       </view>

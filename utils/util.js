@@ -201,6 +201,32 @@ function getWeekday (alist) {
   }
 }
 
+function statusToColor(status) {
+    // status is one of: "招募人员中", "招募完毕，等待活动开始", "活动进行中", "活动已结束", "已取消", "全部"
+    let color = "white";
+    switch (status) {
+        case "招募人员中": 
+            color = "blue"; break;
+        case "招募完毕，等待活动开始":
+            color = "green"; break;
+        case "活动进行中": 
+            color = "yellow"; break;
+        case "活动已结束": 
+            color = "grey"; break;
+        case "已取消": 
+            color = "white";break;
+    }
+    return color
+}
+
+function generateBgColor (alist) {
+  let i = 0, len = alist.length;
+  for (; i < len; i++)
+  {
+      alist[i].color = statusToColor(alist[i].status)
+  }
+}
+
 function generateRandomBgColor (length) {
   let colorArr = ColorList,
       colorNum = colorArr.length,
@@ -222,4 +248,5 @@ module.exports = {
   onLogin: onLogin,
   getWeekday: getWeekday,
   generateRandomBgColor: generateRandomBgColor,
+  generateBgColor: generateBgColor,
 }

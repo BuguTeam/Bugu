@@ -81,6 +81,8 @@ Page({
                 })
             }
             
+            util.generateBgColor(list)
+            
             self.setData({
                 activitylist: list,
                 lastActivityTime: res.data.lastActivityTime,

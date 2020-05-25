@@ -48,13 +48,13 @@ App({
     
     activity_list_fake: [
     {
-        id : 40, 
-        name:'約奶茶', 
+        id : 39, 
+        name:'約自习（这是一个假的活动）', 
         startTime: 1597852800000.0, 
         registrationDDL: 1597852800000.0,
-        maxParticipantNumber:4,
+        maxParticipantNumber:2,
         currentParticipantNumber:2,
-        description: "Coco奶茶拼单",
+        description: "复习期末考",
         location: {
             name: '理教',
             longitude: 116.0,
@@ -63,7 +63,27 @@ App({
         
         hasParticipated:false,
         hasInitiated:false,
-    },],
+        status: "招募完毕，等待活动开始"
+    },
+    {
+        id : 40, 
+        name:'約奶茶（这是一个假的活动）', 
+        startTime: 1597852800000.0, 
+        registrationDDL: 1597852800000.0,
+        maxParticipantNumber:4,
+        currentParticipantNumber:2,
+        description: "Coco奶茶拼单",
+        location: {
+            name: '40楼',
+            longitude: 116.0,
+            latitude: 40.0,
+        },
+        
+        hasParticipated:false,
+        hasInitiated:false,
+        status: "招募人员中"
+    },
+    ],
     
     ColorList: [{
         title: '嫣红',

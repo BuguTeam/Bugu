@@ -25,24 +25,6 @@ Page({
     console.log(event)
   },
   
-  generateRandomBgColor: function() {
-    // 为activitylist中每一卡片生成随机颜色
-    let self=this,
-        colorArr = self.data.colorArr,
-        colorNum = colorArr.length,
-        randomColorArr = self.data.randomColorArr,
-        randomColorLen = randomColorArr.length,
-        listLen = self.data.activitylist.length;
-    do {
-        let random = colorArr[Math.floor(Math.random() * colorNum)];
-        randomColorArr.push(random.name);
-        randomColorLen ++;
-    } while (randomColorLen < listLen)
-        
-    self.setData({
-        randomColorArr: randomColorArr
-    })
-  },
   
   getActivityList: function() {
     let self = this,
@@ -85,12 +67,14 @@ Page({
             util.getWeekday(newList)
             
             let list = oldList.concat(newList),
-                randomColorArr = self.data.randomColorArr.concat(util.generateRandomBgColor(newList.length));
+                randomColorArr = self.data.randomColorArr.concat(util.generateRandomBgColor(list.length))
             
             
             // For debug
-            if (list.length == 0)
+            if (list.length == 0) {
               list = self.data.newlist
+              randomColorArr = util.generateRandomBgColor(list.length)
+            }
             
             // For deployment
             // If current activity list is empty, show a message.
@@ -102,6 +86,7 @@ Page({
                 })
             }
             
+            util.generateBgColor(list)
             self.setData({
                 activitylist: list,
                 lastActivityTime: res.data.lastActivityTime,
