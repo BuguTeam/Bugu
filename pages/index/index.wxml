@@ -68,10 +68,10 @@
         </view>
     </view>
     <swiper class="card-swiper round-dot" indicator-dots="true" bindchange="partCardSwiper" indicator-color="#8799a3" indicator-active-color="#0081ff">
-        <swiper-item wx:for="{{part_alist}}" wx:key="id" class="{{part_cur==index?'cur':''}}">
+        <swiper-item data-obj="{{item}}" bindtap="clickForActivityDetail" wx:for="{{part_alist}}" wx:key="id" class="{{part_cur==index?'cur':''}}" wx:key="key" wx:for-index="key" id="{{key}}">
             
             
-            <view bindtap="clickForActivityDetail" class="card-li bg-blue card-li-part">
+            <view class="card-li bg-blue card-li-part">
 
               <view class="card-time" > {{item.day}}</view>
               <view class="padding-sm">

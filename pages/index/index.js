@@ -45,9 +45,6 @@ Page({
   },
   
   clickForActivityDetail: function(e){
-      console.log(e)
-      console.log(e.currentTarget)
-      console.log(e.currentTarget.dataset)
       var that = this
       var query = JSON.stringify(e.currentTarget.dataset.obj)
       wx.navigateTo({

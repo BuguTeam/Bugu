@@ -38,8 +38,8 @@ App({
   },
   globalData: {
     deployment: false,
-    //rootUrl: 'http://39.104.25.65:80/',
-    rootUrl: 'http://127.0.0.1:5000/',
+    rootUrl: 'http://39.104.25.65:80/',
+    //rootUrl: 'http://127.0.0.1:5000/',
     userInfo: null,
     cookie: '', 
     
