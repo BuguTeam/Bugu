@@ -36,7 +36,7 @@
               
               
               <view class="action">
-                <button class="cu-btn round shadow bg-cyan delete-button" bindtap="clickDeleteButton" data-actindex="{{key}}">
+                <button class="cu-btn round shadow bg-cyan delete-button" catchtap="clickDeleteButton"  hover-stop-propagation="true" data-actindex="{{key}}">
                   delete
                 </button>
               </view>
