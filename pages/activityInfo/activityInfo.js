@@ -58,17 +58,15 @@ Page({
         typeof (response.registrationDDL)=='string'?
       response.registrationDDL:this.buildTime(response.registrationDDL),
       activityMaxParticipants:
-      response.maxParticipantNumber,
+        (response.maxParticipantNumber == -1) ? "不限" : response.maxParticipantNumber,
       activityCurrentParticipants:
       response.currentParticipantNumber,
       activityDescription: (response.description == "") ? "暂无描述" :response.description,
       activityStatus:response.status,
       latitude: parseFloat(response.location.latitude),
       longitude: parseFloat(response.location.longitude),
-      //latitude: 39.991212,
-      //longitude: 116.312891,
       locationName: response.location.name,
-      rate: (100 * parseInt(response.currentParticipantNumber) / parseInt(response.maxParticipantNumber))+"%",
+      rate: (response.maxParticipantNumber == -1) ? "100%":(100 * parseInt(response.currentParticipantNumber) / parseInt(response.maxParticipantNumber))+"%",
       hasParticipated: response.hasParticipate,
       hasInitiated: response.hasInitiated,
       
