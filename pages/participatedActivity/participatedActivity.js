@@ -205,7 +205,7 @@ Page({
     // 获取最新发布的活动列表
     self.getActivityList()
       
-  }
+  },
   clickDeleteButton: function(e){
     let self = this;
     let index = e.currentTarget.dataset.actindex,
