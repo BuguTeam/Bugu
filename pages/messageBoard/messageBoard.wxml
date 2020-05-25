@@ -3,7 +3,7 @@
     <block wx:for="{{list}}" wx:key="{{index}}">
       <view class="pro-box">
         <view class="head">
-          <image class="img" src="{{item.userPhoto}}" mode="aspectFit"></image>
+          <view class="cu-avatar radius" style="background-image:url({{item.userAvatarUrl}});"></view>
           <view class="box">
             <view class="shead clear">
               <view class="names fl">{{item.userName}}
@@ -16,7 +16,7 @@
         </view>
         <view class="addr-info">
           <view class="addr-text">
-            {{item.comment}}
+            {{item.content}}
           </view>
         </view>
         <view class="info">
@@ -26,7 +26,7 @@
           <view class="text">
             <button class="sharebtn" data-commentId="{{item.id}}" data-commentUserName="{{item.userName}}" bindtap="bindReply">回复</button>
           </view>
-              <view wx:if="{{item.userId == userId}}" class="status text fr">
+              <view wx:if="{{item.myCommentFlag}}" class="status text fr">
                 <text class="delete" decode="true" bindtap='deleteComment' data-CommentId="{{item.id}}">删除</text>
               </view>
         </view>

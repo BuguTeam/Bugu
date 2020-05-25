@@ -10,7 +10,32 @@ Page({
    * 页面的初始数据
    */
   data: {
-    list: [],
+    // for debug
+    debug: true,
+    p1: "https://ossweb-img.qq.com/images/lol/web201310/skin/big107000.jpg",
+    p2: "https://ossweb-img.qq.com/images/lol/web201310/skin/big143004.jpg",
+    list: [
+    {
+        id:1, // 当前回复的id
+        userName: "Alice",
+        userAvatarUrl: "https://ossweb-img.qq.com/images/lol/web201310/skin/big107000.jpg",
+        replyUserName: "Bob",
+        replyUserAvatarUrl: "https://ossweb-img.qq.com/images/lol/web201310/skin/big143004.jpg",
+        myCommentFlag: false,
+        content: "喵喵喵",
+        insertTime: 1597852800000.0,
+    },
+    {
+        id:2, // 当前回复的id
+        userName: "Bob",
+        userAvatarUrl: "https://ossweb-img.qq.com/images/lol/web201310/skin/big143004.jpg",
+        replyUserName: "Alice",
+        replyUserAvatarUrl: "https://ossweb-img.qq.com/images/lol/web201310/skin/big107000.jpg",
+        myCommentFlag: true,
+        content: "汪汪汪",
+        insertTime: 1597852900000.0,
+    },
+    ],
   },
 
   /**
@@ -26,7 +51,6 @@ Page({
       success: function (res) {
         that.setData({
           scrollHeight: res.windowHeight,
-          userId: app.globalData.haulUserInfo.id
         });
       }
     });
@@ -84,7 +108,7 @@ Page({
       success: function (res) {
         if (res.confirm) {
           wx.request({
-            url: address, //need to changed as the back-end position
+            url: app.globalData.rootUrl + 'user/activityDisplayer/discussion/delete/', 
             method: "POST",
             data: {
               commentId: commentId
@@ -116,14 +140,18 @@ Page({
   // 更新页面信息
   // 此处的回调函数在 传入新值之前执行 主要用来清除页面信息
   getPageInfo(page, callback) {
+    if (this.data.debug) return ;
+    
     var that = this;
-    util.showLoading();
+    // This function is not implemented.
+    // util.showLoading();
+        
     console.log("getPageInfo");
     console.log("page" + page);
     var limited = 6;
     var offset = (page - 1) * 6;
     wx.request({
-      url: address, // need to changed as the back-end position
+      url: app.globalData.rootUrl + 'user/activityDisplayer/discussion/', 
       method: "POST",
       data: {
         sourceId: mydata.sourceId,
@@ -168,12 +196,11 @@ Page({
     }
     // 提交评论
     wx.request({
-      url: address, //need to be changed as the back-end position
+      url: app.globalData.rootUrl + 'user/activityDisplayer/discussion/create', 
       method: "POST",
       data: {
         sourceId: mydata.sourceId,
         comment: form.comment,
-        userId: app.globalData.haulUserInfo.id,
         userName: app.globalData.haulUserInfo.userName,
         replyCommentId: mydata.commentId,
         replyUserName: mydata.replyUserName,
