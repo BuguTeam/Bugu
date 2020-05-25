@@ -4,7 +4,11 @@
   height: 100vh;
 }
 
-.action {
+.action1 {
+    position: absolute;
+    right: 200rpx;
+}
+.action2 {
     position: absolute;
     right: 50rpx;
 }
