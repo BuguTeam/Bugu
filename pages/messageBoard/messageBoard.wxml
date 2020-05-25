@@ -1,39 +1,59 @@
-<scroll-view scroll-top="{{scrollTop}}" scroll-y="true" style="height:{{scrollHeight}}px;" class="list" bindscrolltolower="bindDownLoad" bindscrolltoupper="refresh">
-  <view class="pro-con">
-    <block wx:for="{{list}}" wx:key="{{index}}">
-      <view class="pro-box">
-        <view class="head">
-          <image class="img" src="{{item.userPhoto}}" mode="aspectFit"></image>
-          <view class="box">
-            <view class="shead clear">
-              <view class="names fl">{{item.userName}}
-                  <view wx:if="{{!item.replyUserName == \" \"}}">
-                  -> {{item.replyUserName}}
-                </view>
-              </view>
+<scroll-view scroll-top="{{scrollTop}}" scroll-y="true" style="height:{{scrollHeight}}px;" class="list" bindscrolltolower="bindDownLoad" bindscrolltoupper="refresh" scroll-into-view='{{toView}}'>
+  <view class="cu-chat">
+  
+    <view wx:for="{{list}}" wx:key="id" wx:for-index="index">
+       <view class="{{item.myCommentFlag?'cu-item self':'cu-item'}}">
+       
+          <view wx:if="{{!item.myCommentFlag}}" class="cu-avatar radius" style="background-image:url({{item.userAvatarUrl}});"></view>
+          
+          <view class="main">
+            <image wx:if="{{item.is_img}}" src="{{item.content}}" class="radius" mode="widthFix"></image>
+            
+            <view wx:if="{{!item.is_img}}" class="content {{item.myCommentFlag?'bg-green':''}} shadow">
+              <text>{{item.content}}</text>
             </view>
+            
           </view>
+          
+          <view wx:if="{{item.myCommentFlag}}" class="cu-avatar radius" style="background-image:url({{item.userAvatarUrl}});"></view>
+          <!--
+          <view class="date ">{{item.insertTime}}</view>
+          -->
+          <view class="date ">{{item.formattedTime}}</view>
+          
         </view>
-        <view class="addr-info">
-          <view class="addr-text">
-            {{item.comment}}
-          </view>
-        </view>
+        
+        <!--
+        回复功能，之后实现
         <view class="info">
-          <view class="text">
-            <text decode="true">{{item.insertTime}}</text>
-          </view>
           <view class="text">
             <button class="sharebtn" data-commentId="{{item.id}}" data-commentUserName="{{item.userName}}" bindtap="bindReply">回复</button>
           </view>
-              <view wx:if="{{item.userId == userId}}" class="status text fr">
+              <view wx:if="{{item.myCommentFlag}}" class="status text fr">
                 <text class="delete" decode="true" bindtap='deleteComment' data-CommentId="{{item.id}}">删除</text>
               </view>
         </view>
-      </view>
-    </block>
+        -->
+        
+    </view>
   </view>
 </scroll-view>
+
+
+<view class="cu-bar foot input {{InputBottom!=0?'cur':''}}" style="bottom:{{InputBottom}}px">
+  <view class="action">
+    <text class="cuIcon-sound text-grey"></text>
+  </view>
+  <input class="solid-bottom" bindinput="getInput" placeholder="comment" value="{{inputValue}}" bindfocus="InputFocus" bindblur="InputBlur" adjust-position="{{false}}" focus="{{false}}" maxlength="300" cursor-spacing="10"></input>
+  <view class="action">
+    <text class="cuIcon-emojifill text-grey"></text>
+  </view>
+  <button class="cu-btn bg-green shadow" bindtap="onSubmit" style="width:120rpx">发送</button>
+</view>
+
+
+<!--
+原来的发送功能
 <form bindsubmit="submitForm" report-submit="true">
   <view class="release">
     <view  wx:if="{{reply}}" class="replyinfo1">
@@ -46,3 +66,4 @@
     </view>
   </view>
 </form>
+-->

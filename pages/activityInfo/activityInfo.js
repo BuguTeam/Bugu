@@ -130,5 +130,12 @@ Page({
         }
       })
     }
+    else if (self.data.buttonMessage == "进入讨论版"){
+      var query = JSON.stringify({activityID: self.data.activityID})
+      console.log(' sending ', query)
+      wx.navigateTo({
+        url: '../messageBoard/messageBoard?query=' + query,
+      })
+    }
   }
 })
