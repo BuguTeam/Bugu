@@ -6,6 +6,7 @@
     "pages/messageBoard/messageBoard",
     "pages/exploreActivity/exploreActivity",
     "pages/initiatedActivity/initiatedActivity",
+    "pages/participatedActivity/participatedActivity",
     "pages/logs/logs"
   ],
   "window": {
