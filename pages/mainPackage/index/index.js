@@ -1,7 +1,7 @@
 //index.js
 //获取应用实例
 const app = getApp()
-var util = require('../../utils/util.js');
+var util = require('../../../utils/util.js');
 
 Page({
   data: {
@@ -35,12 +35,12 @@ Page({
   },
   clickMoreInitActivity: function(e) {
       wx.navigateTo({
-        url: '../initiatedActivity/initiatedActivity',
+        url: '../../subPackage/initiatedActivity/initiatedActivity',
       })
   },
   clickMorePartActivity: function(e) {
       wx.navigateTo({
-        url: '../participatedActivity/participatedActivity',
+        url: '../../subPackage/participatedActivity/participatedActivity',
       })
   },
   
@@ -48,7 +48,7 @@ Page({
       var that = this
       var query = JSON.stringify(e.currentTarget.dataset.obj)
       wx.navigateTo({
-        url: '../activityInfo/activityInfo?query=' + query,
+        url: '../../subPackage/activityInfo/activityInfo?query=' + query,
       })
   },
   getActivityList: function() {
