@@ -1,4 +1,4 @@
-var util = require('../../utils/util.js');
+var util = require('../../../utils/util.js');
 const app = getApp()
 // 暂时没有实现“回复具体某条评论”，“删除评论”，“上传图片”的功能。
 Page({

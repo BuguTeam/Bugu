@@ -1,6 +1,6 @@
 // pages/exploreActivity/exploreActivity.js
 const app = getApp();
-var util = require('../../utils/util.js');
+var util = require('../../../utils/util.js');
 Page({
 
   /**
@@ -104,7 +104,7 @@ Page({
       //将对象转为string
       var query = JSON.stringify(that.data.activitylist[index])
       wx.navigateTo({
-        url: '../activityInfo/activityInfo?query=' + query,
+        url: '../../subPackage/activityInfo/activityInfo?query=' + query,
       })
   },
   
