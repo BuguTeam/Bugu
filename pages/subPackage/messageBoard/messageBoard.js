@@ -190,8 +190,6 @@ Page({
     //if (this.data.debug) return ;
     
     var self = this;
-    // This function is not implemented.
-    // util.showLoading();
         
     console.log("getPageInfo");
     let aid = self.data.activityID;
@@ -217,7 +215,6 @@ Page({
         self.setData({
           list: list
         })
-        wx.hideLoading();  //隐藏loading提示框
       }
     })
   },
@@ -260,7 +257,6 @@ Page({
           list: self.data.list,
           inputValue: ''
         })
-        wx.hideLoading();  //隐藏loading提示框
       }
     })
       
