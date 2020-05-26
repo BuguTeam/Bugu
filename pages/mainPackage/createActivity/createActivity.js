@@ -81,6 +81,16 @@ Page({
           data.push(tmp[i].title+","+tmp[i].address)
           loc.push(tmp[i].location)
         }
+        if(tmp.length==0){
+          wx.showToast({
+            title: '无法检索到该地点!',
+            icon: 'none',
+            duration: 2000
+          }) 
+          self.setData({
+            location:self.data.phoneLoc
+          })
+        }
         self.setData({
           locationList: data,
           locationLatLng:loc
@@ -90,6 +100,14 @@ Page({
   },
 
   locationPicker:function(e){
+    if (this.data.locationList.length==0){
+      wx.showToast({
+        title: '无法检索到该地点!',
+        icon: 'none',
+        duration: 2000
+      }) 
+      return;
+    }
     let name=this.data.locationList[e.detail.value]
     let loc = this.data.locationLatLng[e.detail.value]
     this.setData({
@@ -222,10 +240,10 @@ Page({
           icon: 'none',
           duration: 4000
         })
-        setTimeout(
+        setTimeout(()=>{
           wx.switchTab({
             url: '../exploreActivity/exploreActivity'
-          }), 5000)
+          })}, 5000)
       }
     })
     
