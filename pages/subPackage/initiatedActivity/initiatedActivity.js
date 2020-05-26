@@ -179,6 +179,9 @@ Page({
    */
   onReachBottom: function () {
       console.log('onReachBottom')
+      let self = this;
+      self.getActivityList()
+      console.log(self.data.activitylist)
   },
   /**
    * 页面上拉触底事件的处理函数

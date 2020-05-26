@@ -51,7 +51,9 @@
   
   <view class='cu-tabbar-height'></view>
   
+      <view class="icon_bn" bindtap="onRefreshClick">
+        <text class="cuIcon-pullup text-green"></text> 
+      </view>
 </scroll-view>
-<movableView bind:pagerefresh="onRefreshClick"></movableView>
 
 

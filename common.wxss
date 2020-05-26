@@ -107,3 +107,13 @@
   margin-bottom: 4rpx;
   position: relative;
 }
+
+.icon_bn {
+    font-size: 100rpx;
+    background: white;
+    position: fixed;
+    bottom: 150rpx;
+    right: 50rpx; 
+    z-index: 100;
+    border-radius: 50%;
+}

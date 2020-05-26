@@ -144,12 +144,14 @@ Page({
     var self = this;
     self.clearDataOnRefresh()
     // 获取最新发布的活动列表
+    console.log(' test explore')
     wx.getLocation({
         success: res => {
             self.setData({
                 longitude: res.longitude,
                 latitude: res.latitude
             })
+            console.log(' test explore ', res.longitude)
             self.getActivityList()
         }
     })
