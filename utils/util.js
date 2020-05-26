@@ -1,7 +1,7 @@
 // Development:
-//var rootUrl = 'http://127.0.0.1:5000/'
+var rootUrl = 'http://127.0.0.1:5000/'
 // Deployment:
-var rootUrl = 'http://39.104.25.65:80/'
+//var rootUrl = 'http://39.104.25.65:80/'
 const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
@@ -171,7 +171,7 @@ function userInfoSetInSQL(userInfo) {
     var third_session = wx.getStorageSync('third_session');
     console.log('3rd_session: ', third_session)
     wx.request({
-        url: rootUrl + '/register',
+        url: 'http://39.104.25.65:80/register',
         method: 'post',
         data: {
             third_session: third_session,

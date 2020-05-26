@@ -36,12 +36,12 @@
               
               <view class="card-text"> {{item.status}}</view>
               
-              <view wx:if="{{item.status=='活动进行中'}}" class="action1">
+              <view class="action1">
                 <button class="cu-btn round shadow sm bg-white finish-button" style="width:130rpx" catchtap="clickFinishButton"  hover-stop-propagation="true" data-actindex="{{key}}">
                   <text class='cuIcon-roundclosefill'></text> finish
                 </button>
               </view>
-              <view wx:if="{{item.status!='已结束' && item.status!='活动已结束'}}" class="action2">
+              <view class="action2">
                 <button class="cu-btn round shadow sm bg-white delete-button" style="width:130rpx" catchtap="clickDeleteButton"  hover-stop-propagation="true" data-actindex="{{key}}">
                   <text class='cuIcon-roundclose'></text> cancel
                 </button>
