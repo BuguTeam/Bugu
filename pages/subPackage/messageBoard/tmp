@@ -21,7 +21,6 @@
     
 </view>
 
-<view class='placeholder-view'></view>
 
 <view class="cu-bar foot input {{InputBottom!=0?'cur':''}}" style="bottom:{{InputBottom}}px">
   <view class="action">
