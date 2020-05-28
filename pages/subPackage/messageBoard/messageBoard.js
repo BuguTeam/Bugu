@@ -16,7 +16,8 @@ Page({
     activityId: undefined,
     currentComment: "",
     inputValue: "",
-    list: [
+    list: [],
+    fake_message_list: [
     {
         id:1, // 当前回复的id
         userName: "Alice",
@@ -114,75 +115,8 @@ Page({
         activityID: response.activityID
     })
     
-    //设置scroll的高度
-    wx.getSystemInfo({
-      success: function (res) {
-        self.setData({
-          scrollHeight: res.windowHeight,
-        });
-      }
-    });
     self.getPageInfo();
   },
-  /**
-   * 页面下拉刷新事件的处理函数
-   */
-  refresh: function () {
-    console.log('refresh');
-    this.setData({
-      list: []
-    })
-    this.getPageInfo();
-  },
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  bindDownLoad: function () {
-    console.log("onReachBottom");
-  },
-  /*
-  bindReply: function (e) {
-    console.log(e);
-    mydata.commentId = e.target.dataset.commentid;
-    mydata.replyUserName = e.target.dataset.commentusername;
-    this.setData({
-      replyUserName: mydata.replyUserName,
-      reply: true
-    })
-  },
-  deleteComment: function (e) {
-    console.log(e);
-    var self = this;
-    var commentId = e.target.dataset.commentid;
-
-    wx.showModal({
-      title: '删除评论',
-      content: '请确认是否删除该评论？',
-      success: function (res) {
-        if (res.confirm) {
-          wx.request({
-            url: app.globalData.rootUrl + 'user/activityDisplayer/discussion/delete/', 
-            method: "POST",
-            data: {
-              commentId: commentId
-            },
-            header: {
-              "content-type": "application/x-www-form-urlencoded;charset=utf-8",
-            },
-            success: res => {
-              self.refresh();
-              wx.showToast({
-                title: "删除成功"
-              })
-            }
-          })
-        } else if (res.cancel) {
-          console.log('用户点击取消')
-        }
-      }
-    })
-  },
-  */
   // 更新页面信息
   // 此处的回调函数在 传入新值之前执行 主要用来清除页面信息
   getPageInfo(page, callback) {
