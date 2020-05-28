@@ -9,7 +9,7 @@ describe('createActivity页面测试', () => {
       wsEndpoint: 'ws://localhost:9420',
     });
 
-    page = await miniProgram.reLaunch('/pages/createActivity/createActivity');
+    page = await miniProgram.reLaunch('/pages/mainPackage/createActivity/createActivity');
 
   });
 

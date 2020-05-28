@@ -40,7 +40,7 @@ describe('activityInfo页面测试', () => {
 
     let test_query = JSON.stringify(test_json)
 
-    page = await miniProgram.reLaunch('/pages/activityInfo/activityInfo?query='+test_query);
+    page = await miniProgram.reLaunch('/pages/subPackage/activityInfo/activityInfo?query='+test_query);
 
   });
 

@@ -79,7 +79,7 @@ describe('index页面测试', () => {
     await card.tap();
     await page.waitFor(1000);
     const currentPage = await miniProgram.currentPage();
-    expect(currentPage.path).toContain('pages/activityInfo/activityInfo');
+    expect(currentPage.path).toContain('pages/subPackage/activityInfo/activityInfo');
     await miniProgram.navigateBack();
   })
 
@@ -89,7 +89,7 @@ describe('index页面测试', () => {
     await card.tap();
     await page.waitFor(1000);
     const currentPage = await miniProgram.currentPage();
-    expect(currentPage.path).toContain('pages/activityInfo/activityInfo');
+    expect(currentPage.path).toContain('pages/subPackage/activityInfo/activityInfo');
     await miniProgram.navigateBack();
   })
 
@@ -99,7 +99,7 @@ describe('index页面测试', () => {
     await card.tap();
     await page.waitFor(1000);
     const currentPage = await miniProgram.currentPage();
-    expect(currentPage.path).toContain('pages/initiatedActivity/initiatedActivity');
+    expect(currentPage.path).toContain('pages/subPackage/initiatedActivity/initiatedActivity');
     await miniProgram.navigateBack();
   })
 
@@ -109,7 +109,7 @@ describe('index页面测试', () => {
     await card.tap();
     await page.waitFor(1000);
     const currentPage = await miniProgram.currentPage();
-    expect(currentPage.path).toContain('pages/participatedActivity/participatedActivity');
+    expect(currentPage.path).toContain('pages/subPackage/participatedActivity/participatedActivity');
     await miniProgram.navigateBack();
   })
 });

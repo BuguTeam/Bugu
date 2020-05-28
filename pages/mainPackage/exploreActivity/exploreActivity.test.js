@@ -9,7 +9,7 @@ describe('exploreActivity页面测试', () => {
     miniProgram = await automator.connect({
       wsEndpoint: 'ws://localhost:9420',
     });
-    page = await miniProgram.reLaunch('/pages/exploreActivity/exploreActivity');
+    page = await miniProgram.reLaunch('/pages/mainPackage/exploreActivity/exploreActivity');
     page.setData({
         activitylist: [
         {
@@ -60,7 +60,7 @@ describe('exploreActivity页面测试', () => {
     await card.tap();
     await page.waitFor(1000);
     const currentPage = await miniProgram.currentPage();
-    expect(currentPage.path).toContain('pages/activityInfo/activityInfo');
+    expect(currentPage.path).toContain('pages/subPackage/activityInfo/activityInfo');
     await miniProgram.navigateBack();
   })
 
