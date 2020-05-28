@@ -186,9 +186,13 @@ Page({
       },
       success: res => {
         console.log(res);
-        self.data.list = res.data;
+        let list = res.data;
+        let i = 0, len = list.length;
+        for (; i < len; i++) {
+            list[i].formattedTime = util.formatTime(new Date(list[i].insertTime))
+        }
         self.setData({
-          list: self.data.list,
+          list: list,
           inputValue: ''
         })
       }
