@@ -193,7 +193,8 @@ Page({
         }
         self.setData({
           list: list,
-          inputValue: ''
+          inputValue: '',
+          currentComment: ''
         })
       }
     })
