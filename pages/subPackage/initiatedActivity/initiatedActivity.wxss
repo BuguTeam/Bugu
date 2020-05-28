@@ -1,7 +1,7 @@
 /* pages/exploreActivity/exploreActivity.wxss */
 
 .scrollPage {
-  height: 90%;
+  height: 1500rpx;
 }
 
 .action1 {
