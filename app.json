@@ -1,12 +1,20 @@
 {
   "pages": [
-    "pages/index/index",
-    "pages/activityInfo/activityInfo",
-    "pages/createActivity/createActivity",
-    "pages/exploreActivity/exploreActivity",
-    "pages/initiatedActivity/initiatedActivity",
-    "pages/logs/logs"
+    "pages/mainPackage/index/index",
+    "pages/mainPackage/createActivity/createActivity",
+    "pages/mainPackage/exploreActivity/exploreActivity",
+    "pages/mainPackage/logs/logs"
   ],
+  "subPackages": [
+    {
+      "root": "pages/subPackage/",
+      "pages": [
+        "activityInfo/activityInfo",
+        "initiatedActivity/initiatedActivity",
+        "messageBoard/messageBoard",
+        "participatedActivity/participatedActivity"
+      ]
+    }],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarTitleText": "Bugu",
@@ -22,25 +30,22 @@
       {
         "selectedIconPath": "images/tabbar/discover_cur.png",
         "iconPath": "images/tabbar/discover.png",
-        "pagePath": "pages/exploreActivity/exploreActivity",
+        "pagePath": "pages/mainPackage/exploreActivity/exploreActivity",
         "text": "发现"
       },
       {
         "selectedIconPath": "images/tabbar/add_cur.png",
         "iconPath": "images/tabbar/add.png",
-        "pagePath": "pages/createActivity/createActivity",
+        "pagePath": "pages/mainPackage/createActivity/createActivity",
         "text": "发起活动"
       },
       {
         "selectedIconPath": "images/tabbar/about_cur.png",
         "iconPath": "images/tabbar/about.png",
-        "pagePath": "pages/index/index",
+        "pagePath": "pages/mainPackage/index/index",
         "text": "我的"
       }
     ]
-  },
-  "usingComponents": {
-    "movableView": "./component/movableView/movableView"
   },
   
   "permission": {

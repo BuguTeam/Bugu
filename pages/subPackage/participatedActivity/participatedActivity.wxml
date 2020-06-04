@@ -1,0 +1,59 @@
+<!--pages/participatedActivity/participatedActivity.wxml-->
+<view wx:if="{{show_message}}"> 
+  <text>{{message}}</text>
+</view>
+<scroll-view scroll-y 
+    bindscrolltolower="bottomHandler" scrolltoupper="upperHandler" class="scrollPage">
+
+
+  <view class='card-list'>
+    <view bindtap="clickForActivityDetail" class="card-li bg-{{item.color}}" wx:for="{{activitylist}}" wx:key="key" wx:for-index="key" id="{{key}}">
+
+      <view class="card-time" > {{item.day}}</view>
+      
+      <view class="padding-sm">
+          <view class="flex  p-xs margin-bottom-sm mb-sm">
+            <view class="flex-sub padding-sm margin-xs radius">
+              <view class="card-title">{{item.name}}</view>
+              
+            </view>
+            <view class="flex-twice padding-sm margin-xs radius">          
+              
+              
+              <view class="card-location">
+                <text class="cuIcon-location"></text>  
+                <view class="card-text-cut">{{item.location.name}} </view>
+              </view>
+              <!--
+              <view class="card-text"> {{item.description}}</view>
+              -->
+              < text wx:key="index" wx:for="{{item.currentParticipantNumber}}">
+                <text class='cuIcon-peoplefill'></text>
+              </text>
+              < text wx:key="index" wx:for="{{item.maxParticipantNumber-item.currentParticipantNumber}}">
+                <text class='cuIcon-people'></text>
+              </text>
+              <view class="card-text"> {{item.status}}</view>
+              
+              <view wx:if="{{item.status=='招募人员中'}}" class="action">
+                <button class="cu-btn round shadow bg-white delete-button" style="width:120rpx" catchtap="clickDeleteButton"  hover-stop-propagation="true" data-actindex="{{key}}">
+                  <text class='cuIcon-roundclose'></text> exit
+                </button>
+              </view>
+              
+            </view>
+          </view>
+      </view>
+      
+
+    </view>
+  </view>
+  
+  <view class='cu-tabbar-height'></view>
+  
+      <view class="icon_bn" bindtap="onRefreshClick">
+        <text class="cuIcon-pullup text-green"></text> 
+      </view>
+</scroll-view>
+
+

@@ -1,0 +1,14 @@
+/* pages/exploreActivity/exploreActivity.wxss */
+
+.scrollPage {
+  height: 1500rpx;
+}
+
+.action1 {
+    position: absolute;
+    right: 200rpx;
+}
+.action2 {
+    position: absolute;
+    right: 50rpx;
+}

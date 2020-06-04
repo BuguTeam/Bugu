@@ -1,5 +1,0 @@
-/* pages/exploreActivity/exploreActivity.wxss */
-
-.scrollPage {
-  height: 100vh;
-}

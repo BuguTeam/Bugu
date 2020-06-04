@@ -1,0 +1,10 @@
+/* pages/participatedActivity/participatedActivity.wxss */
+
+.scrollPage {
+  height: 100vh;
+}
+
+.action {
+    position: absolute;
+    right: 50rpx;
+}

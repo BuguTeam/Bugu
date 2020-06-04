@@ -4,7 +4,6 @@ App({
     
   // 用户登录
   
-  
   onLaunch: function () {
     // 展示本地存储能力
     var logs = wx.getStorageSync('logs') || []
@@ -38,11 +37,54 @@ App({
     })
   },
   globalData: {
+    deployment: false,
+    rootUrl: 'http://39.104.25.65:80/',
+    //rootUrl: 'http://127.0.0.1:5000/',
     userInfo: null,
     cookie: '', 
     
     weekdays: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
     months: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+    
+    activity_list_fake: [
+    {
+        id : 39, 
+        name:'約自习（这是一个假的活动）', 
+        startTime: 1597852800000.0, 
+        registrationDDL: 1597852800000.0,
+        maxParticipantNumber:2,
+        currentParticipantNumber:2,
+        description: "复习期末考",
+        location: {
+            name: '理教',
+            longitude: 116.0,
+            latitude: 40.0,
+        },
+        
+        hasParticipated:false,
+        hasInitiated:false,
+        status: "招募完毕，等待活动开始"
+    },
+    {
+        id : 40, 
+        name:'約奶茶（这是一个假的活动）', 
+        startTime: 1597852800000.0, 
+        registrationDDL: 1597852800000.0,
+        maxParticipantNumber:4,
+        currentParticipantNumber:2,
+        description: "Coco奶茶拼单",
+        location: {
+            name: '40楼',
+            longitude: 116.0,
+            latitude: 40.0,
+        },
+        
+        hasParticipated:false,
+        hasInitiated:false,
+        status: "招募人员中"
+    },
+    ],
+    
     ColorList: [{
         title: '嫣红',
         name: 'red',

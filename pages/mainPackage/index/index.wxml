@@ -1,0 +1,104 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="userinfo">
+    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+    <block wx:else>
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    </block>
+  </view>
+  <!--
+  <view class="usermotto">
+    <text class="user-motto">{{motto}}</text>
+  </view>
+  -->
+
+    <view class="cu-bar bg-white margin-top">
+        <view class="action">
+            <text class="cuIcon-title text-pink"></text> 发起的活动
+        </view>
+        <view bindtap="clickMoreInitActivity" class="init-more">
+        <text>查看更多</text>
+        </view>
+    </view>
+    <swiper class="card-swiper round-dot" indicator-dots="true" bindchange="initCardSwiper" indicator-color="#8799a3" indicator-active-color="#0081ff">
+        <swiper-item data-obj="{{item}}" bindtap="clickForActivityDetail" wx:for="{{init_alist}}" wx:key class="{{init_cur==index?'cur':''}}" wx:key="key" wx:for-index="key" id="{{key}}">
+            
+            
+                <view  class="card-li bg-blue card-li-init">
+
+                <view class="card-time" > {{item.day}}</view>
+                  
+                  <view class="padding-sm">
+                      <view class="flex  p-xs margin-bottom-sm mb-sm">
+                        <view class="flex-sub padding-sm margin-xs radius">
+                          <view class="card-title">{{item.name}}</view>
+                          
+                        </view>
+                        <view class="flex-twice padding-sm margin-xs radius">          
+                          
+                          
+                          <view class="card-location">
+                            <text class="cuIcon-location"></text>  
+                            <view class="card-text-cut">{{item.location.name}} </view>
+                          </view>
+              
+                          < text wx:key="index" wx:for="{{item.currentParticipantNumber}}">
+                            <text class='cuIcon-peoplefill'></text>
+                          </text>
+                          < text wx:key="index" wx:for="{{item.maxParticipantNumber-item.currentParticipantNumber}}">
+                            <text class='cuIcon-people'></text>
+                          </text>
+                          
+                        </view>
+                      </view>
+                  
+
+                </view>
+            </view>
+        </swiper-item>
+    </swiper>
+    
+    <view class="cu-bar bg-white margin-top">
+        <view class="action">
+            <text class="cuIcon-title text-pink"></text> 参与的活动
+        </view>
+        <view bindtap="clickMorePartActivity" class="part-more">
+        <text>查看更多</text>
+        </view>
+    </view>
+    <swiper class="card-swiper round-dot" indicator-dots="true" bindchange="partCardSwiper" indicator-color="#8799a3" indicator-active-color="#0081ff">
+        <swiper-item data-obj="{{item}}" bindtap="clickForActivityDetail" wx:for="{{part_alist}}" wx:key="id" class="{{part_cur==index?'cur':''}}" wx:key="key" wx:for-index="key" id="{{key}}">
+            
+            
+            <view class="card-li bg-blue card-li-part">
+
+              <view class="card-time" > {{item.day}}</view>
+              <view class="padding-sm">
+                  <view class="flex p-xs margin-bottom-sm mb-sm">
+                    <view class="flex-sub padding-sm margin-xs radius">
+                      <view class="card-title">{{item.name}}</view>
+                      
+                    </view>
+                    <view class="flex-twice padding-sm margin-xs radius">          
+                      
+                      
+                      <view class="card-location">
+                        <text class="cuIcon-location"></text>  
+                        <view class="card-text-cut">{{item.location.name}} </view>
+                      </view>
+                      < text wx:key="index" wx:for="{{item.currentParticipantNumber}}">
+                        <text class='cuIcon-peoplefill'></text>
+                      </text>
+                      < text wx:key="index" wx:for="{{item.maxParticipantNumber-item.currentParticipantNumber}}">
+                        <text class='cuIcon-people'></text>
+                      </text>
+                      
+                    </view>
+                  </view>
+              </view>
+
+            </view>
+        </swiper-item>
+    </swiper>
+</view>

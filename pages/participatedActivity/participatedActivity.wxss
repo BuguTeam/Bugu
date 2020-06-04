@@ -1,5 +1,0 @@
-/* pages/participatedActivity/participatedActivity.wxss */
-
-.scrollPage {
-  height: 100vh;
-}
